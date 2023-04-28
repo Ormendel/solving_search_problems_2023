@@ -43,7 +43,7 @@ public class Ex1
             }
         }
 
-        System.out.println();
+        System.out.println(); //sync check
     }
     private static void printVariables()
     {
