@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-public class BFS extends Ex1
+public class BFS extends Ex1 implements Algorithm
 {
     /* measure time of algorithm */
     private static long startTime;
@@ -13,18 +13,6 @@ public class BFS extends Ex1
     private static String path="";
     private static double seconds = 0;
     private static int cost = 0;
-
-    public static long getStartTime() {
-        return startTime;
-    }
-
-    public static long getEndTime() {
-        return endTime;
-    }
-
-    public static double getSeconds() {
-        return seconds;
-    }
 
     private static void setCost_to_goal(Node n)
     {
@@ -85,14 +73,11 @@ public class BFS extends Ex1
             Queue<Node> children= op.operator(op.getN());
             for(Node g: children)
             {
-                if(!closed_list.containsKey(g.getId()) && !q.contains(g))
+                if(g.getTag() == 'G')
                 {
-                    if(g.getTag() == 'G')
-                    {
-                        flag=true;
-                        goal = g;
-                        break;
-                    }
+                    flag=true;
+                    goal = g;
+                    break;
                 }
                 q.add(g);
                 open_list.put(g.getId(), g); //all children are being inserted into open_list except from G (goal)
@@ -115,6 +100,6 @@ public class BFS extends Ex1
         System.out.println("Cost: "+cost);
         System.out.println(seconds+" seconds"); // seconds is set
 
-        write_outputFile();
+//        write_outputFile();
     }
 }
