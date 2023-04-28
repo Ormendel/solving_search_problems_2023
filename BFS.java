@@ -23,30 +23,14 @@ public class BFS extends Ex1
         return seconds;
     }
 
-    private static String unfixed_path_to_goal(Node n)    /* This method is called "unfixed" because we actually get the path from goal to start */
+    private static void setCost_to_goal(Node n)
     {
-        /* also get the cost */
-        String unfixed="";
+        /*calculate the cost from start to goal (simply move from goal to start)*/
         while(n.getParent()!=null)
         {
-            unfixed = unfixed.concat(n.getPath());
-            cost+= n.getCost(); /* getting also the total cost from start to goal */
+            cost += n.getCost();
             n = n.getParent();
         }
-        return unfixed;
-    }
-
-    private static String correct_path_to_goal(String s)    /*Getting the correct path from start to goal */
-    {
-        String ans = "";
-        String[] arrOfPath = s.split("-");
-        for(int i=arrOfPath.length-1;i>=0;--i)
-        {
-            ans = ans.concat(arrOfPath[i]);
-            if(i!=0)//I don't want to add extra "-"
-                ans = ans.concat("-");
-        }
-        return ans;
     }
     public static void run(Node start)
     {
@@ -55,7 +39,7 @@ public class BFS extends Ex1
         Hashtable<String, Node> open_list = new Hashtable<>();
         Hashtable<String, Node> closed_list = new Hashtable<>();
         q.add(start);
-        Node build_path = null;
+        Node goal = null;
         boolean flag = false; /*This boolean variable indicates if we found the goal state. it took me a while to realize I need it, in order to avoid duplicate states*/
         int iteration = 1;
         open_list.put(start.getId(), start);
@@ -80,7 +64,7 @@ public class BFS extends Ex1
                     if(g.getTag() == 'G')
                     {
                         flag=true;
-                        build_path = g;
+                        goal = g;
                         break;
                     }
                 }
@@ -95,10 +79,8 @@ public class BFS extends Ex1
         }
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
-
-        String path = unfixed_path_to_goal(build_path);
-        System.out.println("unfixed path is: "+path);
-        System.out.println("now correct path is: "+correct_path_to_goal(path));
+        setCost_to_goal(goal);
+        System.out.println("path from start to goal: "+goal.getPath().substring(0,goal.getPath().length()-1));
         System.out.println("Num: "+created_states);
         System.out.println("Cost: "+cost);
         System.out.println(seconds+" seconds");
