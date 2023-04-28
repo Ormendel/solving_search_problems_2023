@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,7 +24,7 @@ public class Ex1
     static String path_to_output= "";
     static int cost_to_output = 0;
     static int created_states = 0;
-    public static HashSet<Node> set = new HashSet<>(); //set to count how many nodes we are creating
+    static int seconds=0;
 
     /**
      *
@@ -75,8 +76,7 @@ public class Ex1
     }
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
         try
         {
             var.read_and_initialize_from_inputFile("input.txt");
@@ -91,7 +91,6 @@ public class Ex1
         int[] curr_cell = {var.row_start, var.column_start};
         String start_id = "("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")->("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")";
         Node start = new Node(start_id,null,new int[]{-1,-1},curr_cell,"",0, "START", 'S'); //cost of S is 0
-        set.add(start);
         //printChildren(start);
         BFS algo1 = new BFS();
         algo1.run(start);

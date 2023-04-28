@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Map;
@@ -8,6 +9,8 @@ public class BFS extends Ex1
     /* measure time of algorithm */
     private static long startTime;
     private static long endTime;
+
+    private static String path="";
     private static double seconds = 0;
     private static int cost = 0;
 
@@ -32,8 +35,29 @@ public class BFS extends Ex1
             n = n.getParent();
         }
     }
-    public static void run(Node start)
+
+    private static void write_outputFile() throws IOException
     {
+        File file = new File("my_output.txt");
+        FileWriter fw = new FileWriter(file,true);
+        PrintWriter pw = new PrintWriter(fw);
+
+        if(path.isEmpty())
+        {
+            pw.println("no path");
+            pw.println("Num: "+created_states);
+            pw.println("Cost: inf");
+        }
+        else
+        {
+            pw.println(path);
+            pw.println("Num: "+created_states);
+            pw.println("Cost: "+cost);
+        }
+        pw.print(seconds+" seconds");
+        pw.close();
+    }
+    public static void run(Node start) throws IOException {
         startTime = System.currentTimeMillis();
         Queue<Node> q = new LinkedList<>();
         Hashtable<String, Node> open_list = new Hashtable<>();
@@ -84,13 +108,13 @@ public class BFS extends Ex1
         }
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
-        setCost_to_goal(goal);
-        System.out.println("path from start to goal: "+goal.getPath().substring(0,goal.getPath().length()-1));
-        System.out.println("Num: "+created_states);
+        setCost_to_goal(goal); // cost is set
+        path = goal.getPath().substring(0,goal.getPath().length()-1); // path is set
+        System.out.println("path from start to goal: "+path);
+        System.out.println("Num: "+created_states); // Number of states is set
         System.out.println("Cost: "+cost);
-        System.out.println(seconds+" seconds");
+        System.out.println(seconds+" seconds"); // seconds is set
 
-        //path_toOutput = correct_path_to_goal(path);
-        //print_results();
+        write_outputFile();
     }
 }
