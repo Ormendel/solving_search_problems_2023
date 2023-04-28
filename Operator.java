@@ -33,6 +33,7 @@ public class Operator extends Ex1
 
     /**
      * Creating all possible moves from Node n  - 8 is the maximum number for children of a single node
+     * The variable insert_path in this function indicates the path from start to the node we are creating (the position we are on the board)
      * @param n - A given node
      * @return - The children of n
      */
@@ -456,7 +457,7 @@ public class Operator extends Ex1
             }
         }
         /*==========done! now return the children==========*/
-        System.out.println(set);
+        System.out.println(children);
         System.out.println("num states: "+created_states+"\n");
         return children;
     }

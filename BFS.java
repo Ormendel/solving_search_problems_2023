@@ -48,7 +48,9 @@ public class BFS extends Ex1
             if(var.with_open)
             {
                 System.out.println("\n==========ITERATION #"+(iteration++)+"==========");
+                System.out.println("========== OPEN LIST: ==========");
                 System.out.println(open_list);
+                System.out.println("================================="+"\n");
             }
             Node n = q.remove();
             if(open_list.containsKey(n.getId()))
@@ -71,11 +73,14 @@ public class BFS extends Ex1
                 q.add(g);
                 open_list.put(g.getId(), g); //all children are being inserted into open_list except from G (goal)
             }
-            if(var.with_open) //Printing last iteration, because the goal was found and the loop for(Node g: check_operator) has ended
-            {
-                System.out.println("\n==========LAST ITERATION : #"+(iteration++)+"==========");
-                System.out.println(open_list);
-            }
+        }
+        if(var.with_open) //Printing last iteration to check the queue, because the goal was found
+        {
+            System.out.println("\n==========LAST ITERATION : #"+(iteration++)+"==========");
+            System.out.println("========== OPEN LIST: ==========");
+            System.out.println(open_list);
+            System.out.println("================================="+"\n");
+            System.out.println("Goal was found =]\n");
         }
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
