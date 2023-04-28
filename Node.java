@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Node extends Ex1
 {
-
+    private String id;
     private Node parent;
     private int[] parent_cell; //which previous position brought us here
     private int[] curr_cell; //which cell we are currently at
@@ -14,8 +14,9 @@ public class Node extends Ex1
     private char tag = '?';
 
     /*====== Constructor ======*/
-    public Node(Node parent, int[] parent_cell, int[] curr_cell, String path, int cost, String direction, char tag)
+    public Node(String id,Node parent, int[] parent_cell, int[] curr_cell, String path, int cost, String direction, char tag)
     {
+        this.id=id;
         this.parent = parent;
         this.parent_cell = parent_cell;
         this.curr_cell = curr_cell;
@@ -26,6 +27,14 @@ public class Node extends Ex1
     }
 
     /*====== Getters and Setters ======*/
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Node getParent() {
         return parent;
@@ -154,12 +163,12 @@ public class Node extends Ex1
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Node node)) return false;
-        return getCost() == node.getCost() && getTag() == node.getTag() && Objects.equals(getParent(), node.getParent()) && Arrays.equals(getParent_cell(), node.getParent_cell()) && Arrays.equals(getCurr_cell(), node.getCurr_cell()) && Objects.equals(getPath(), node.getPath()) && Objects.equals(getDirection(), node.getDirection());
+        return getCost() == node.getCost() && getTag() == node.getTag() && Objects.equals(getId(), node.getId()) && Objects.equals(getParent(), node.getParent()) && Arrays.equals(getParent_cell(), node.getParent_cell()) && Arrays.equals(getCurr_cell(), node.getCurr_cell()) && Objects.equals(getPath(), node.getPath()) && Objects.equals(getDirection(), node.getDirection());
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getParent(), getPath(), getCost(), getDirection(), getTag());
+        int result = Objects.hash(getId(), getParent(), getPath(), getCost(), getDirection(), getTag());
         result = 31 * result + Arrays.hashCode(getParent_cell());
         result = 31 * result + Arrays.hashCode(getCurr_cell());
         return result;
@@ -169,8 +178,8 @@ public class Node extends Ex1
     public String toString() {
         if(parent == null) //start node
         {
-            return "Node{" +
-                    "parent_cell = undefined"+
+            return "Node{" + "id: "+id+
+                    " --- parent_cell = undefined"+
                     ", curr_cell =" + "(" + (curr_cell[0]+1) + ","+ (curr_cell[1]+1)+")"+
                     ", path='" + path + '\'' +
                     ", cost=" + cost +
@@ -178,8 +187,8 @@ public class Node extends Ex1
                     ", tag=" + tag +
                     '}'+'\n';
         }
-        return "Node{" +
-                "parent_cell =" + "(" + (parent_cell[0]+1) + ","+ (parent_cell[1]+1)+")"+
+        return "Node{" + "id: "+id+
+                " --- parent_cell =" + "(" + (parent_cell[0]+1) + ","+ (parent_cell[1]+1)+")"+
                 ", curr_cell =" + "(" + (curr_cell[0]+1) + ","+ (curr_cell[1]+1)+")"+
                 ", path='" + path + '\'' +
                 ", cost=" + cost +

@@ -35,17 +35,30 @@ public class BFS extends Ex1
         }
         return unfixed;
     }
+
+    private static String correct_path_to_goal(String s)    /*Getting the correct path from start to goal */
+    {
+        String ans = "";
+        String[] arrOfPath = s.split("-");
+        for(int i=arrOfPath.length-1;i>=0;--i)
+        {
+            ans = ans.concat(arrOfPath[i]);
+            if(i!=0)//I don't want to add extra "-"
+                ans = ans.concat("-");
+        }
+        return ans;
+    }
     public static void run(Node start)
     {
         startTime = System.currentTimeMillis();
         Queue<Node> q = new LinkedList<>();
-        Hashtable<Integer, Node> open_list = new Hashtable<>();
-        Hashtable<Integer, Node> closed_list = new Hashtable<>();
+        Hashtable<String, Node> open_list = new Hashtable<>();
+        Hashtable<String, Node> closed_list = new Hashtable<>();
         q.add(start);
         Node build_path = null;
         boolean flag = false; /*This boolean variable indicates if we found the goal state. it took me a while to realize I need it, in order to avoid duplicate states*/
-        int index_open_list = 1, index_closed_list = 1, iteration = 1;
-        open_list.put(index_open_list++, start);
+        int iteration = 1;
+        open_list.put(start.getId(), start);
         while(!q.isEmpty()&&!flag)
         {
             if(var.with_open)
@@ -54,36 +67,25 @@ public class BFS extends Ex1
                 System.out.println(open_list);
             }
             Node n = q.remove();
-            if(open_list.containsValue(n))
-            {
-                /*Searching for the key*/
-                for(Map.Entry<Integer, Node> entry: open_list.entrySet())
-                {
-                    if(entry.getValue().equals(n))
-                    {
-                        open_list.remove(entry.getKey());
-                    }
-                }
-            }
-            closed_list.put(index_closed_list++, n);
+            if(open_list.containsKey(n.getId()))
+                open_list.remove(n.getId());
+            closed_list.put(n.getId(), n);
             Operator op = new Operator();
             op.setN(n);
             Queue<Node> children= op.operator(op.getN());
             for(Node g: children)
             {
-                if(!closed_list.containsValue(g) && !q.contains(g))
+                if(!closed_list.containsKey(g.getId()) && !q.contains(g))
                 {
                     if(g.getTag() == 'G')
                     {
                         flag=true;
                         build_path = g;
-                        System.out.println("cost till goal is: "+build_path.getCost());
-                        open_list.put(index_open_list++, g);
                         break;
                     }
                 }
                 q.add(g);
-                open_list.put(index_open_list++, g); //all children are being inserted into open_list except from G (goal)
+                open_list.put(g.getId(), g); //all children are being inserted into open_list except from G (goal)
             }
             if(var.with_open) //Printing last iteration, because the goal was found and the loop for(Node g: check_operator) has ended
             {
@@ -94,8 +96,9 @@ public class BFS extends Ex1
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
 
-//        String path = unfixed_path_to_goal(build_path);
-//        System.out.println(path);
+        String path = unfixed_path_to_goal(build_path);
+        System.out.println("unfixed path is: "+path);
+        System.out.println("now correct path is: "+correct_path_to_goal(path));
         System.out.println("Num: "+created_states);
         System.out.println("Cost: "+cost);
         System.out.println(seconds+" seconds");

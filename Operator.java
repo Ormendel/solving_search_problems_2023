@@ -59,7 +59,8 @@ public class Operator extends Ex1
                     insert_path = "R"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"R"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -83,7 +84,8 @@ public class Operator extends Ex1
                     insert_path = "RD"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"RD"+"-";
-                Node child = new Node(n, n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n, n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -107,7 +109,8 @@ public class Operator extends Ex1
                     insert_path = "D"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"D"+"-";
-                Node child = new Node(n, n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n, n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -131,7 +134,8 @@ public class Operator extends Ex1
                     insert_path = "LD"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"LD"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -155,7 +159,8 @@ public class Operator extends Ex1
                     insert_path = "L"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"L"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -179,7 +184,8 @@ public class Operator extends Ex1
                     insert_path = "LU"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"LU"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -203,7 +209,8 @@ public class Operator extends Ex1
                     insert_path = "U"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"U"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -227,7 +234,8 @@ public class Operator extends Ex1
                     insert_path = "RU"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"RU"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -255,7 +263,8 @@ public class Operator extends Ex1
                     insert_path = "R"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"R"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -279,7 +288,8 @@ public class Operator extends Ex1
                     insert_path = "RU"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"RU"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -303,7 +313,8 @@ public class Operator extends Ex1
                     insert_path = "U"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"U"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -327,7 +338,8 @@ public class Operator extends Ex1
                     insert_path = "LU"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"LU"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -351,7 +363,8 @@ public class Operator extends Ex1
                     insert_path = "L"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"L"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -375,7 +388,8 @@ public class Operator extends Ex1
                     insert_path = "LD"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"LD"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -399,7 +413,8 @@ public class Operator extends Ex1
                     insert_path = "D"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"D"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
@@ -423,7 +438,8 @@ public class Operator extends Ex1
                     insert_path = "RD"+"-";
                 else
                     insert_path = n.getDirection()+"-"+"RD"+"-";
-                Node child = new Node(n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
+                String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
+                Node child = new Node(id,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child)); //correcting the cost
                 if(!set.contains(child) && n.getPath().isEmpty()) //this child is created from starting state
                 {
