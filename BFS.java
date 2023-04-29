@@ -14,16 +14,6 @@ public class BFS extends Ex1 implements Algorithm
     private static double seconds = 0;
     private static int cost = 0;
 
-    private static void setCost_to_goal(Node n)
-    {
-        /*calculate the cost from start to goal (simply move from goal to start)*/
-        while(n.getParent()!=null)
-        {
-            cost += n.getCost();
-            n = n.getParent();
-        }
-    }
-
     private static void write_outputFile() throws IOException
     {
         File file = new File("my_output.txt");
@@ -93,7 +83,7 @@ public class BFS extends Ex1 implements Algorithm
         }
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
-        setCost_to_goal(goal); // cost is set
+        cost = goal.getCost(); // cost is set
         path = goal.getPath().substring(0,goal.getPath().length()-1); // path is set
         System.out.println("path from start to goal: "+path);
         System.out.println("Num: "+created_states); // Number of states is set
