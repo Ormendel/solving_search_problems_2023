@@ -69,7 +69,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='L')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'L') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-L-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -92,7 +97,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("LU"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("LU"))
                 {
                     ++created_states;
                     children.add(child);
@@ -115,7 +120,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='U')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'U') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-U-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -138,7 +148,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("RU"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("RU"))
                 {
                     ++created_states;
                     children.add(child);
@@ -161,7 +171,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='R')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'R') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-R-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -184,7 +199,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("RD"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("RD"))
                 {
                     ++created_states;
                     children.add(child);
@@ -207,7 +222,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='D')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'D') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-D-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -230,7 +250,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("LD"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("LD"))
                 {
                     ++created_states;
                     children.add(child);
@@ -257,7 +277,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='L')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'L') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-L-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -280,7 +305,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("LD"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("LD"))
                 {
                     ++created_states;
                     children.add(child);
@@ -303,7 +328,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='D')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'D') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-D-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -326,7 +356,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("RD"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("RD"))
                 {
                     ++created_states;
                     children.add(child);
@@ -349,7 +379,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='R')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'R') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-R-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -372,7 +407,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("RU"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("RU"))
                 {
                     ++created_states;
                     children.add(child);
@@ -395,7 +430,12 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().charAt(n.getPath().length()-2)!='U')
+                else if(n.getPath().length()==2 && n.getPath().charAt(0) != 'U') // 'movement'-
+                {
+                    ++created_states;
+                    children.add(child);
+                }
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3,n.getPath().length()).equals("-U-")) // length>=3, -'movement'-
                 {
                     ++created_states;
                     children.add(child);
@@ -418,7 +458,7 @@ public class Operator extends Ex1
                     ++created_states;
                     children.add(child);
                 }
-                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()).equals("LU"))
+                else if(n.getPath().length()>=3&&!n.getPath().substring(n.getPath().length()-3, n.getPath().length()-1).equals("LU"))
                 {
                     ++created_states;
                     children.add(child);
