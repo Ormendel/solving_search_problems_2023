@@ -93,7 +93,6 @@ public class Ex1
         String start_id = "("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")->("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")";
         Node start = new Node(start_id, ""+(var.row_start+1)+""+(var.column_start+1),""+(var.row_start+1)+""+(var.column_start+1),null,new int[]{-1,-1},curr_cell,"",0, "START", 'S'); //cost of S is 0
         set.add(start);
-        ++created_states;
         //printChildren(start);
         BFS algo1 = new BFS();
         algo1.run(start);
