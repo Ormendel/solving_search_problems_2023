@@ -3,6 +3,8 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BFS extends Ex1 implements Algorithm
 {
@@ -44,7 +46,7 @@ public class BFS extends Ex1 implements Algorithm
         Node goal = null;
         boolean flag = false; /*This boolean variable indicates if we found the goal state. it took me a while to realize I need it, in order to avoid duplicate states*/
         int iteration = 1;
-        open_list.put(start.getId(), start);
+        open_list.put(start.getSearchedKey(), start);
         while(!q.isEmpty()&&!flag)
         {
             if(var.with_open)
@@ -55,9 +57,8 @@ public class BFS extends Ex1 implements Algorithm
                 System.out.println("================================="+"\n");
             }
             Node n = q.remove();
-            if(open_list.containsKey(n.getId()))
-                open_list.remove(n.getId());
-            closed_list.put(n.getId(), n);
+            if(open_list.containsKey(n.getSearchedKey())|| open_list.containsKey(n.getOppositeKey()))
+                open_list.remove(n.getSearchedKey());
             Operator op = new Operator();
             op.setN(n);
             Queue<Node> children= op.operator(op.getN());
@@ -69,9 +70,19 @@ public class BFS extends Ex1 implements Algorithm
                     goal = g;
                     break;
                 }
-                q.add(g);
-                open_list.put(g.getId(), g); //all children are being inserted into open_list except from G (goal)
+                if(!(open_list.containsKey(g.getSearchedKey()) || open_list.containsKey(g.getOppositeKey())))
+                {
+                    if(!(closed_list.containsKey(g.getSearchedKey()) || closed_list.containsKey(g.getOppositeKey())))
+                    {
+                        q.add(g);
+                        open_list.put(g.getSearchedKey(), g); //all children are being inserted into open_list except from G (goal)
+                    }
+                }
             }
+            if(!closed_list.containsKey(n.getSearchedKey()) || closed_list.containsKey(n.getOppositeKey()))
+                closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
+            System.out.println("open list: \n"+open_list);
+            System.out.println("closed list: \n"+closed_list);
         }
         if(var.with_open) //Printing last iteration to check the queue, because the goal was found
         {
