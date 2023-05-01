@@ -21,11 +21,14 @@ public class Ex1
     static InputReader var = new InputReader();
     static HashSet<Node> set = new HashSet<>();
 
-    /*Output file variables*/
-    static String path_to_output= "";
-    static int cost_to_output = 0;
+    /* measure time of algorithm */
+    static long startTime;
+    static long endTime;
+
+    static String path="";
+    static double seconds = 0;
+    static int cost = 0;
     static int created_states = 0;
-    static int seconds=0;
 
     /**
      *
@@ -59,25 +62,8 @@ public class Ex1
         //printBoard(var.board);
 
     }
-
-    /**
-     * This function prints all possible cells we can step into, given a single node n
-     * @param n
-     */
-    private static void printChildren(Node n)
+    public static void main(String[] args) throws IOException
     {
-        System.out.println("Printing all possible moves from: "+"("+(var.row_start+1)+","+(var.column_start+1)+")");
-        Operator op = new Operator();
-        op.setN(n);
-        Queue<Node> children= op.operator(op.getN());
-        for(Node child: children)
-        {
-            System.out.println(child.getPath()+ ", cost: "+child.getCost()+", moving direction: "+child.getDirection()+ ", map: "+n.getTag()+" --> "+child.getTag());
-        }
-    }
-
-
-    public static void main(String[] args) throws IOException {
         try
         {
             var.read_and_initialize_from_inputFile("input.txt");
@@ -93,31 +79,27 @@ public class Ex1
         String start_id = "("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")->("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")";
         Node start = new Node(start_id, ""+(var.row_start+1)+""+(var.column_start+1),""+(var.row_start+1)+""+(var.column_start+1),null,new int[]{-1,-1},curr_cell,"",0, "START", 'S'); //cost of S is 0
         set.add(start);
-        //printChildren(start);
-        BFS algo1 = new BFS();
-        algo1.run(start);
+        switch(var.algo)
+        {
+            case "BFS":
+                BFS algo1 = new BFS();
+                algo1.run(start);
+                break;
+            case "DFID":
+                DFID algo2 = new DFID();
+                break;
+            case "A*":
+                A_star algo3 = new A_star();
+                break;
+            case "IDA*":
+                IDA_star algo4 = new IDA_star();
+                break;
+            case "DFBnB":
+                DFBnB algo5 = new DFBnB();
+                break;
+            default:
+                break;
 
-//        switch(var.algo)
-//        {
-//            case "BFS":
-//                BFS algo1 = new BFS();
-//
-//                break;
-//            case "DFID":
-//                DFID algo2 = new DFID();
-//                break;
-//            case "A*":
-//                A_star algo3 = new A_star();
-//                break;
-//            case "IDA*":
-//                IDA_star algo4 = new IDA_star();
-//                break;
-//            case "DFBnB":
-//                DFBnB algo5 = new DFBnB();
-//                break;
-//            default:
-//                break;
-//
-//        }
+        }
     }
 }

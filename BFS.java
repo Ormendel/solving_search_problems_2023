@@ -8,14 +8,6 @@ import java.util.regex.Pattern;
 
 public class BFS extends Ex1 implements Algorithm
 {
-    /* measure time of algorithm */
-    private static long startTime;
-    private static long endTime;
-
-    private static String path="";
-    private static double seconds = 0;
-    private static int cost = 0;
-
     private static void write_outputFile() throws IOException
     {
         File file = new File("my_output.txt");
@@ -57,8 +49,10 @@ public class BFS extends Ex1 implements Algorithm
                 System.out.println("================================="+"\n");
             }
             Node n = q.remove();
-            if(open_list.containsKey(n.getSearchedKey())|| open_list.containsKey(n.getOppositeKey()))
+            if((open_list.containsKey(n.getSearchedKey())|| open_list.containsKey(n.getOppositeKey())))
                 open_list.remove(n.getSearchedKey());
+            if(!closed_list.containsKey(n.getSearchedKey()) || !closed_list.containsKey(n.getOppositeKey()))
+                closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
             Operator op = new Operator();
             op.setN(n);
             Queue<Node> children= op.operator(op.getN());
@@ -72,15 +66,13 @@ public class BFS extends Ex1 implements Algorithm
                 }
                 if(!(open_list.containsKey(g.getSearchedKey()) || open_list.containsKey(g.getOppositeKey())))
                 {
-                    if(!(closed_list.containsKey(g.getSearchedKey()) || closed_list.containsKey(g.getOppositeKey())))
+                    if(!closed_list.containsKey(g.getSearchedKey()) || !closed_list.containsKey(g.getOppositeKey()))
                     {
                         q.add(g);
                         open_list.put(g.getSearchedKey(), g); //all children are being inserted into open_list except from G (goal)
                     }
                 }
             }
-            if(!closed_list.containsKey(n.getSearchedKey()) || closed_list.containsKey(n.getOppositeKey()))
-                closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
             System.out.println("open list: \n"+open_list);
             System.out.println("closed list: \n"+closed_list);
         }
