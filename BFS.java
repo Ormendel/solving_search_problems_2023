@@ -49,9 +49,9 @@ public class BFS extends Ex1 implements Algorithm
                 System.out.println("================================="+"\n");
             }
             Node n = q.remove();
-            if((open_list.containsKey(n.getSearchedKey())|| open_list.containsKey(n.getOppositeKey())))
+            if((open_list.containsKey(n.getSearchedKey())))
                 open_list.remove(n.getSearchedKey());
-            if(!closed_list.containsKey(n.getSearchedKey()) || !closed_list.containsKey(n.getOppositeKey()))
+            if(!closed_list.containsKey(n.getSearchedKey()))
                 closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
             Operator op = new Operator();
             op.setN(n);
@@ -64,9 +64,9 @@ public class BFS extends Ex1 implements Algorithm
                     goal = g;
                     break;
                 }
-                if(!(open_list.containsKey(g.getSearchedKey()) || open_list.containsKey(g.getOppositeKey())))
+                if(!(open_list.containsKey(g.getSearchedKey())))
                 {
-                    if(!closed_list.containsKey(g.getSearchedKey()) || !closed_list.containsKey(g.getOppositeKey()))
+                    if(!closed_list.containsKey(g.getSearchedKey()))
                     {
                         q.add(g);
                         open_list.put(g.getSearchedKey(), g); //all children are being inserted into open_list except from G (goal)
