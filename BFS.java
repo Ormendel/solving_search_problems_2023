@@ -23,7 +23,8 @@ public class BFS extends Ex1 implements Algorithm
             pw.println("Num: "+created_states);
             pw.println("Cost: "+cost);
         }
-        pw.print(seconds+" seconds");
+        if(var.with_time)
+            pw.print(seconds+" seconds");
         pw.close();
     }
     public static void run(Node start) throws IOException
@@ -72,7 +73,7 @@ public class BFS extends Ex1 implements Algorithm
         }
         if(var.with_open) //Printing last iteration to check the queue, because the goal was found
         {
-            System.out.println("\n==========LAST ITERATION : #"+(iteration++)+"==========");
+            System.out.println("\n==========LAST ITERATION : #"+(iteration)+"==========");
             System.out.println("========== OPEN LIST: ==========");
             System.out.println(open_list);
             System.out.println("================================="+"\n");
