@@ -73,7 +73,7 @@ public class Ex1
             System.out.println("An error occurred while trying opening the file =[");
             e.printStackTrace();
         }
-        printVariables(); //check if all went through ok
+        //printVariables(); //check if all went through ok
 
         int[] curr_cell = {var.row_start, var.column_start};
         String start_id = "("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")->("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")";

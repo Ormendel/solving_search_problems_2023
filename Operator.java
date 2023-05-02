@@ -331,7 +331,6 @@ public class Operator extends Ex1
             }
         }
         /*==========done! now return the children==========*/
-        System.out.println("num states: "+created_states+"\n");
         return children;
     }
 }
