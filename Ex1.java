@@ -65,7 +65,7 @@ public class Ex1
     {
         try
         {
-            var.read_and_initialize_from_inputFile("input.txt");
+            var.read_and_initialize_from_inputFile("inputFiles/input.txt");
         }
         catch (FileNotFoundException e)
         {
@@ -85,6 +85,7 @@ public class Ex1
                 break;
             case "DFID":
                 DFID algo2 = new DFID();
+                algo2.run(start);
                 break;
             case "A*":
                 A_star algo3 = new A_star();
