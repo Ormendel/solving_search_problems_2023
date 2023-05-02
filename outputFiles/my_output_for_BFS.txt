@@ -1,0 +1,4 @@
+D-RD-D-LD
+Num: 39
+Cost: 21
+0.007 seconds
