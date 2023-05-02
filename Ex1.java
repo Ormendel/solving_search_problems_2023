@@ -77,7 +77,7 @@ public class Ex1
 
         int[] curr_cell = {var.row_start, var.column_start};
         String start_id = "("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")->("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")";
-        Node start = new Node(start_id, ""+(var.row_start+1)+""+(var.column_start+1),""+(var.row_start+1)+""+(var.column_start+1),null,new int[]{-1,-1},curr_cell,"",0, "START", 'S'); //cost of S is 0
+        Node start = new Node(start_id, ""+(var.row_start+1)+""+(var.column_start+1),null, new int[]{-1,-1},curr_cell,"",0, "START", 'S'); //cost of S is 0
         set.add(start);
         switch(var.algo)
         {

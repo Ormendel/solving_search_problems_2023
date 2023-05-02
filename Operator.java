@@ -62,13 +62,13 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"R"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
+
             }
             if(isValid(i+1, j+1)) // 2. Check if we can move right&down
             {
@@ -80,13 +80,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"RD"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i+1, j)) // 3. Check if we can move one step down
             {
@@ -98,13 +97,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"D"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i+1, j-1)) // 4. Check if we can move left&down
             {
@@ -116,13 +114,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"LD"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i, j-1)) // 5. Check if we can move one step left
             {
@@ -134,13 +131,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"L"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i-1, j-1)) // 6. Check if we can move left&up
             {
@@ -152,13 +148,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"LU"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i-1, j)) // 7. Check if we can move one step up
             {
@@ -170,13 +165,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"U"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i-1, j+1)) // 8. Check if we can move right&up
             {
@@ -188,13 +182,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"RU"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
         }
 
@@ -210,13 +203,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"R"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i-1, j+1)) // 2. Check if we can move right&up
             {
@@ -228,13 +220,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"RU"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i-1, j)) // 3. Check if we can move one step up
             {
@@ -246,13 +237,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"U"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i-1, j-1)) // 4. Check if we can move left&up
             {
@@ -264,13 +254,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"LU"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i, j-1)) // 5. Check if we can move one step left
             {
@@ -282,13 +271,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"L"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i+1, j-1)) // 6. Check if we can move left&down
             {
@@ -300,13 +288,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"LD"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i+1, j)) // 7. Check if we can move one step down
             {
@@ -318,13 +305,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"D"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
             if(isValid(i+1, j+1)) // 8. Check if we can move right&down
             {
@@ -336,13 +322,12 @@ public class Operator extends Ex1
                 else
                     insert_path = n.getPath()+"RD"+"-";
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
-                Node child = new Node(id,""+new_i+""+new_j,""+(n.getCurr_cell()[0]+1)+""+(n.getCurr_cell()[1]+1),n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
+                Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
-                if(!(child.getCurr_cell()[0]==n.getParent_cell()[0] && child.getCurr_cell()[1]==n.getParent_cell()[1]))
-                {
-                    ++created_states;
+                if(n.getParent()==null)
                     children.add(child);
-                }
+                else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
+                    children.add(child);
             }
         }
         /*==========done! now return the children==========*/

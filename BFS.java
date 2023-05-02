@@ -29,16 +29,18 @@ public class BFS extends Ex1 implements Algorithm
         pw.print(seconds+" seconds");
         pw.close();
     }
-    public static void run(Node start) throws IOException {
+    public static void run(Node start) throws IOException
+    {
         startTime = System.currentTimeMillis();
         Queue<Node> q = new LinkedList<>();
         Hashtable<String, Node> open_list = new Hashtable<>();
         Hashtable<String, Node> closed_list = new Hashtable<>();
         q.add(start);
         Node goal = null;
-        boolean flag = false; /*This boolean variable indicates if we found the goal state. it took me a while to realize I need it, in order to avoid duplicate states*/
+        boolean flag = false; /*This boolean variable indicates if we found the goal state.*/
         int iteration = 1;
         open_list.put(start.getSearchedKey(), start);
+        ++created_states;
         while(!q.isEmpty()&&!flag)
         {
             if(var.with_open)
@@ -51,30 +53,26 @@ public class BFS extends Ex1 implements Algorithm
             Node n = q.remove();
             if((open_list.containsKey(n.getSearchedKey())))
                 open_list.remove(n.getSearchedKey());
-            if(!closed_list.containsKey(n.getSearchedKey()))
-                closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
+            closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
             Operator op = new Operator();
             op.setN(n);
             Queue<Node> children= op.operator(op.getN());
             for(Node g: children)
             {
+                ++created_states;
                 if(g.getTag() == 'G')
                 {
                     flag=true;
                     goal = g;
                     break;
                 }
-                if(!(open_list.containsKey(g.getSearchedKey())))
-                {
-                    if(!closed_list.containsKey(g.getSearchedKey()))
-                    {
-                        q.add(g);
-                        open_list.put(g.getSearchedKey(), g); //all children are being inserted into open_list except from G (goal)
-                    }
-                }
+                if(open_list.containsKey(g.getSearchedKey()) || closed_list.containsKey(g.getSearchedKey()))
+                    continue;
+                q.add(g);
+                open_list.put(g.getSearchedKey(), g); //all children are being inserted into open_list except from G (goal)
             }
-            System.out.println("open list: \n"+open_list);
-            System.out.println("closed list: \n"+closed_list);
+            //System.out.println("open list: \n"+open_list);
+            //System.out.println("closed list: \n"+closed_list);
         }
         if(var.with_open) //Printing last iteration to check the queue, because the goal was found
         {

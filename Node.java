@@ -4,8 +4,6 @@ public class Node extends Ex1
 {
     private String id;
     private String searchedKey;
-
-    private String oppositeKey;
     private Node parent;
     private int[] parent_cell; //which previous position brought us here
     private int[] curr_cell; //which cell we are currently at
@@ -17,11 +15,10 @@ public class Node extends Ex1
     private char tag = '?';
 
     /*====== Constructor ======*/
-    public Node(String id, String searchedKey, String oppositeKey, Node parent, int[] parent_cell, int[] curr_cell, String path, int cost, String direction, char tag)
+    public Node(String id, String searchedKey, Node parent, int[] parent_cell, int[] curr_cell, String path, int cost, String direction, char tag)
     {
         this.id=id;
         this.searchedKey = searchedKey;
-        this.oppositeKey = oppositeKey;
         this.parent = parent;
         this.parent_cell = parent_cell;
         this.curr_cell = curr_cell;
@@ -48,15 +45,6 @@ public class Node extends Ex1
     public void setSearchedKey(String searchedKey) {
         this.searchedKey = searchedKey;
     }
-
-    public String getOppositeKey() {
-        return oppositeKey;
-    }
-
-    public void setOppositeKey(String oppositeKey) {
-        this.oppositeKey = oppositeKey;
-    }
-
     public Node getParent() {
         return parent;
     }
