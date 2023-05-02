@@ -1,16 +1,13 @@
 import java.io.*;
 import java.util.Hashtable;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class BFS extends Ex1 implements Algorithm
 {
     private static void write_outputFile() throws IOException
     {
-        File file = new File("my_output.txt");
+        File file = new File("outputFiles/my_output_for_BFS.txt");
         FileWriter fw = new FileWriter(file,true);
         PrintWriter pw = new PrintWriter(fw);
 
@@ -90,6 +87,6 @@ public class BFS extends Ex1 implements Algorithm
         System.out.println("Cost: "+cost);
         System.out.println(seconds+" seconds"); // seconds is set
 
-//        write_outputFile();
+        write_outputFile();
     }
 }
