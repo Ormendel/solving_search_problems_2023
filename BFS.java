@@ -40,7 +40,6 @@ public class BFS extends Ex1 implements Algorithm
         boolean flag = false; /*This boolean variable indicates if we found the goal state.*/
         int iteration = 1;
         open_list.put(start.getSearchedKey(), start);
-        ++created_states;
         while(!q.isEmpty()&&!flag)
         {
             if(var.with_open)
