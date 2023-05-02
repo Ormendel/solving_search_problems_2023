@@ -9,9 +9,6 @@ import java.util.Queue;
 
 public class DFID extends Ex1 implements Algorithm
 {
-    private static Hashtable<String, Node> open_list = new Hashtable<>();
-    private static Hashtable<String, Node> closed_list = new Hashtable<>();
-    private static int iteration = 1;
     private static void write_outputFile() throws IOException
     {
         File file = new File("outputFiles/my_output_for_DFID.txt");
@@ -30,19 +27,20 @@ public class DFID extends Ex1 implements Algorithm
             pw.println("Num: "+created_states);
             pw.println("Cost: "+cost);
         }
-        pw.print(seconds+" seconds");
+        if(var.with_time)
+            pw.print(seconds+" seconds");
         pw.close();
     }
 
     public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
-        // iterate until we will find goal or no where to go
+        HashMap<String, Node> open_list = new HashMap<>();
+        // iterate until we will find goal or nowhere to go
         for (int depth = 1; depth < Integer.MAX_VALUE; depth++)
         {
-            HashMap<String, Node> h = new HashMap<>();
-            open_list.clear();closed_list.clear();
-            String result = limited_DFS(start, depth, h);
+            open_list.clear();
+            String result = limited_DFS(start, depth, open_list,1);
             if (!result.equals("cutoff")) /* if we found a solution to problem return the path to goal, otherwise return no path */
             {
                 long end = System.currentTimeMillis() - startTime;
@@ -58,8 +56,9 @@ public class DFID extends Ex1 implements Algorithm
     }
 
 
-    private static String limited_DFS(Node n, int limit, HashMap<String, Node> h)
+    private static String limited_DFS(Node n, int limit, HashMap<String, Node> open_list, int iteration)
     {
+        open_list.put(n.getSearchedKey(),n);
         if(var.with_open)
         {
             System.out.println("\n==========ITERATION #"+(iteration++)+": LIMIT #"+(limit)+" ==========");
@@ -80,31 +79,29 @@ public class DFID extends Ex1 implements Algorithm
             return "cutoff";
         else
         {
-            open_list.put(n.getSearchedKey(), n);
-            h.put(n.getSearchedKey(), n); /* insert Hash table current node */
-
+            open_list.put(n.getSearchedKey(), n); /* insert Hash table current node */
             boolean isCutoff = false;
             Operator op = new Operator();
             op.setN(n);
             Queue<Node> children= op.operator(op.getN());
-            System.out.println(children);
-            //for each node in children - check
-            for (Node g : children)
+            if((open_list.containsKey(n.getSearchedKey())))
+                open_list.remove(n.getSearchedKey());
+            for (Node g : children)//for each node in children - check
             {
                 ++created_states;
-                if (h.containsKey(g.getSearchedKey()))
+                if (open_list.containsKey(g.getSearchedKey()))
                  /* if hash table contains that path then continue to next operator */
                     continue;
-                String result = limited_DFS(g, limit - 1, h); /* recurse to deeper layer with the current node */
+
+                String result = limited_DFS(g, limit - 1, open_list,iteration); /* recurse to deeper layer with the current node */
 
                 if (result.equals("cutoff")) /* if the string equals to cutoff then isCutoff will also will set to true */
                     isCutoff = true;
                 else if (!result.equals("fail")) /* if the result doesn't equal to fail return the result */
                     return result;
             }
-            closed_list.put(n.getSearchedKey(), n); //finished iterating over all the children, so add to closed list
+            //closed_list.put(n.getSearchedKey(), n); //finished iterating over all the children, so add to closed list
             //if we reached here means we couldn't find solution with n node so will remove it from hash table
-            h.remove(n.getSearchedKey(),n);
             open_list.remove(n.getSearchedKey(),n);
             //if cutoff true -> return cutoff
             if (isCutoff)
