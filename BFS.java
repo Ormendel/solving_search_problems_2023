@@ -13,12 +13,22 @@ public class BFS extends Ex1 implements Algorithm
 
         if(path.isEmpty())
         {
+            System.out.println("no path");
+            System.out.println("Num: "+created_states); // Number of states is set
+            System.out.println("Cost: inf");
+            System.out.println(seconds+" seconds"); // seconds is set
+
             pw.println("no path");
             pw.println("Num: "+created_states);
             pw.println("Cost: inf");
         }
         else
         {
+            System.out.println(path);
+            System.out.println("Num: "+created_states); // Number of states is set
+            System.out.println("Cost: "+cost);
+            System.out.println(seconds+" seconds"); // seconds is set
+
             pw.println(path);
             pw.println("Num: "+created_states);
             pw.println("Cost: "+cost);
@@ -81,13 +91,11 @@ public class BFS extends Ex1 implements Algorithm
         }
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
-        cost = goal.getCost(); // cost is set
-        path = goal.getPath().substring(0,goal.getPath().length()-1); // path is set
-        System.out.println("path from start to goal: "+path);
-        System.out.println("Num: "+created_states); // Number of states is set
-        System.out.println("Cost: "+cost);
-        System.out.println(seconds+" seconds"); // seconds is set
-
+        if(goal!=null)
+        {
+            cost = goal.getCost(); // cost is set
+            path = goal.getPath().substring(0, goal.getPath().length() - 1); // path is set
+        }
         write_outputFile();
     }
 }
