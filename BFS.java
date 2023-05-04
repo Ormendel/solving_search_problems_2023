@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -40,10 +41,11 @@ public class BFS extends Ex1 implements Algorithm
     public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
-        Queue<Node> q = new LinkedList<>();
+        LinkedHashMap<String,Node> q = new LinkedHashMap<>();
         Hashtable<String, Node> open_list = new Hashtable<>();
         Hashtable<String, Node> closed_list = new Hashtable<>();
-        q.add(start);
+        q.put(start.getSearchedKey(),start);
+        ++created_states;
         Node goal = null;
         boolean flag = false; /*This boolean variable indicates if we found the goal state.*/
         int iteration = 1;
@@ -57,13 +59,16 @@ public class BFS extends Ex1 implements Algorithm
                 System.out.println(open_list);
                 System.out.println("================================="+"\n");
             }
-            Node n = q.remove();
+            String key_n = q.entrySet().iterator().next().getKey();
+            Node n = q.get(key_n); // get first node currently in hashmap
+            q.remove(key_n);
+
             if((open_list.containsKey(n.getSearchedKey())))
                 open_list.remove(n.getSearchedKey());
             Operator op = new Operator();
             op.setN(n);
-            Queue<Node> children= op.operator(op.getN());
-            for(Node g: children)
+            LinkedHashMap<String,Node> children= op.operator(op.getN());
+            for(Node g: children.values())
             {
                 ++created_states;
                 if(g.getTag() == 'G')
@@ -74,7 +79,7 @@ public class BFS extends Ex1 implements Algorithm
                 }
                 if(open_list.containsKey(g.getSearchedKey()) || closed_list.containsKey(g.getSearchedKey()))
                     continue;
-                q.add(g);
+                q.put(g.getSearchedKey(),g);
                 open_list.put(g.getSearchedKey(), g); //all children are being inserted into open_list except from G (goal)
             }
             closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list

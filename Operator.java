@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Operator extends Ex1
 {
@@ -38,9 +35,9 @@ public class Operator extends Ex1
      * @param n - A given node
      * @return - The children of n
      */
-    public Queue<Node> operator(Node n)
+    public LinkedHashMap<String,Node> operator(Node n)
     {
-        Queue<Node> children = new LinkedList<>();
+        LinkedHashMap<String,Node> children = new LinkedHashMap<>();
         int i,j, new_i, new_j;
         String insert_path="";
         /*====== we are looking at index i for current row and index j for current column ======*/
@@ -65,9 +62,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
 
             }
             if(isValid(i+1, j+1)) // 2. Check if we can move right&down
@@ -83,9 +80,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i+1, j)) // 3. Check if we can move one step down
             {
@@ -100,9 +97,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i+1, j-1)) // 4. Check if we can move left&down
             {
@@ -117,9 +114,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i, j-1)) // 5. Check if we can move one step left
             {
@@ -134,9 +131,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i-1, j-1)) // 6. Check if we can move left&up
             {
@@ -151,9 +148,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i-1, j)) // 7. Check if we can move one step up
             {
@@ -168,9 +165,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i-1, j+1)) // 8. Check if we can move right&up
             {
@@ -185,9 +182,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
         }
 
@@ -206,9 +203,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "R", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i-1, j+1)) // 2. Check if we can move right&up
             {
@@ -223,9 +220,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i-1, j)) // 3. Check if we can move one step up
             {
@@ -240,9 +237,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "U", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i-1, j-1)) // 4. Check if we can move left&up
             {
@@ -257,9 +254,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LU", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i, j-1)) // 5. Check if we can move one step left
             {
@@ -274,9 +271,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "L", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i+1, j-1)) // 6. Check if we can move left&down
             {
@@ -291,9 +288,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "LD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i+1, j)) // 7. Check if we can move one step down
             {
@@ -308,9 +305,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "D", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
             if(isValid(i+1, j+1)) // 8. Check if we can move right&down
             {
@@ -325,9 +322,9 @@ public class Operator extends Ex1
                 Node child = new Node(id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, insert_path, 0, "RD", var.board[new_i-1][new_j-1]);
                 child.setCost(child.calculateCost(child) + n.getCost()); //correcting the cost
                 if(n.getParent()==null)
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
-                    children.add(child);
+                    children.put(child.getSearchedKey(),child);
             }
         }
         /*==========done! now return the children==========*/
