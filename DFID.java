@@ -2,10 +2,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class DFID extends Ex1 implements Algorithm
 {
@@ -35,16 +32,18 @@ public class DFID extends Ex1 implements Algorithm
     public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
-        HashMap<String, Node> open_list = new HashMap<>();
+        Hashtable<String, Node> open_list = new Hashtable<>();
+        Hashtable<String, Node> h = new Hashtable<>();
         // iterate until we will find goal or nowhere to go
         for (int depth = 1; depth < Integer.MAX_VALUE; depth++)
         {
-            open_list.clear();
-            String result = limited_DFS(start, depth, open_list,1);
+            open_list.clear();h.clear();
+            String result = limited_DFS(start, depth, open_list,h,1);
             if (!result.equals("cutoff")) /* if we found a solution to problem return the path to goal, otherwise return no path */
             {
                 long end = System.currentTimeMillis() - startTime;
                 seconds = end / 1000.0;
+                break;
             }
         }
         endTime = System.currentTimeMillis() - startTime;
@@ -56,9 +55,10 @@ public class DFID extends Ex1 implements Algorithm
     }
 
 
-    private static String limited_DFS(Node n, int limit, HashMap<String, Node> open_list, int iteration)
+    private static String limited_DFS(Node n, int limit, Hashtable<String, Node> open_list, Hashtable<String, Node> h, int iteration)
     {
         open_list.put(n.getSearchedKey(),n);
+        ++created_states;
         if(var.with_open)
         {
             System.out.println("\n==========ITERATION #"+(iteration++)+": LIMIT #"+(limit)+" ==========");
@@ -79,30 +79,28 @@ public class DFID extends Ex1 implements Algorithm
             return "cutoff";
         else
         {
-            open_list.put(n.getSearchedKey(), n); /* insert Hash table current node */
+            h.put(n.getSearchedKey(), n); /* insert Hash table current node */
             boolean isCutoff = false;
             Operator op = new Operator();
             op.setN(n);
-            Queue<Node> children= op.operator(op.getN());
+            LinkedHashMap<String,Node> children= op.operator(op.getN());
             if((open_list.containsKey(n.getSearchedKey())))
                 open_list.remove(n.getSearchedKey());
-            for (Node g : children)//for each node in children - check
+            for (Node g : children.values())//for each node in children - check
             {
-                ++created_states;
-                if (open_list.containsKey(g.getSearchedKey()))
+                if (h.containsKey(g.getSearchedKey()))
                  /* if hash table contains that path then continue to next operator */
                     continue;
 
-                String result = limited_DFS(g, limit - 1, open_list,iteration); /* recurse to deeper layer with the current node */
+                String result = limited_DFS(g, limit - 1, open_list, h,iteration); /* recurse to deeper layer with the current node */
 
                 if (result.equals("cutoff")) /* if the string equals to cutoff then isCutoff will also will set to true */
                     isCutoff = true;
                 else if (!result.equals("fail")) /* if the result doesn't equal to fail return the result */
                     return result;
             }
-            //closed_list.put(n.getSearchedKey(), n); //finished iterating over all the children, so add to closed list
             //if we reached here means we couldn't find solution with n node so will remove it from hash table
-            open_list.remove(n.getSearchedKey(),n);
+            h.remove(n.getSearchedKey(),n);
             //if cutoff true -> return cutoff
             if (isCutoff)
                 return "cutoff";
