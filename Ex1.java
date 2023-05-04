@@ -72,10 +72,10 @@ public class Ex1
             System.out.println("An error occurred while trying opening the file =[");
             e.printStackTrace();
         }
-        //printVariables(); //check if all went through ok
+        printVariables(); //check if all went through ok
 
         int[] curr_cell = {var.row_start, var.column_start};
-        String start_id = "("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")->("+Integer.toString(var.row_start+1)+","+Integer.toString(var.column_start+1)+")";
+        String start_id = "("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")->("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")";
         Node start = new Node(start_id, ""+(var.row_start+1)+""+(var.column_start+1),null, new int[]{-1,-1},curr_cell,"",0, "START", 'S'); //cost of S is 0
         switch(var.algo)
         {
@@ -100,5 +100,6 @@ public class Ex1
                 break;
 
         }
+
     }
 }
