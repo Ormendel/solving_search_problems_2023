@@ -1,0 +1,4 @@
+D-RD-D-LD
+Num: 81
+Cost: 21
+0.056 seconds
