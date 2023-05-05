@@ -65,6 +65,9 @@ class InputReader
 
         /*====== all is left is to convert the array list to matrix ======*/
         initializeBoard();
+
+        /*also extract the coordinates of start and goal*/
+        initialize_start_and_goal();
     }
 
     public static void initializeBoard()

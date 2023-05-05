@@ -49,16 +49,18 @@ public class Ex1
 
         System.out.println();
     }
-    private static void printVariables()
+    private static void introToUser()
     {
-        System.out.println(var.algo);
-        System.out.println(var.clock_direction_with_fn);
-        System.out.println(var.with_time);
-        System.out.println(var.with_open);
-        System.out.println(var.size);
-        System.out.println(var.start_and_goal_coordinates);
-        var.initialize_start_and_goal();
-        //printBoard(var.board);
+        final String ANSI_RESET = "\u001b[0m";  // Text Reset
+        final String BLUE = "\u001b[34m";
+        final String YELLOW = "\u001b[33m";
+        final String GREEN = "\u001b[32m";
+        final String bold = "\033[1m";
+        final String start = "("+(var.row_start+1)+","+(var.column_start+1)+")";
+
+        System.out.println( bold+BLUE + "Chosen algorithm: "+ BLUE +var.algo + ANSI_RESET);
+        System.out.println(bold + YELLOW + "Activating "+ var.algo +" from "+start+":"+ANSI_RESET);
+        System.out.println(GREEN + "-------------------------------- results -------------------------------- \n"+ANSI_RESET);
 
     }
     public static void main(String[] args) throws IOException
@@ -72,7 +74,7 @@ public class Ex1
             System.out.println("An error occurred while trying opening the file =[");
             e.printStackTrace();
         }
-        printVariables(); //check if all went through ok
+        introToUser(); //check if all went through ok
 
         int[] curr_cell = {var.row_start, var.column_start};
         String start_id = "("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")->("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")";
@@ -89,6 +91,7 @@ public class Ex1
                 break;
             case "A*":
                 A_star algo3 = new A_star();
+                algo3.run(start);
                 break;
             case "IDA*":
                 IDA_star algo4 = new IDA_star();
