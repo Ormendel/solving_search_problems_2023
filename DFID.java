@@ -14,12 +14,22 @@ public class DFID extends Ex1 implements Algorithm
 
         if(path.isEmpty())
         {
+            System.out.println("no path");
+            System.out.println("Num: "+created_states); // Number of states is set
+            System.out.println("Cost: inf");
+            System.out.println(seconds+" seconds"); // seconds is set
+
             pw.println("no path");
             pw.println("Num: "+created_states);
             pw.println("Cost: inf");
         }
         else
         {
+            System.out.println(path);
+            System.out.println("Num: "+created_states); // Number of states is set
+            System.out.println("Cost: "+cost);
+            System.out.println(seconds+" seconds"); // seconds is set
+
             pw.println(path);
             pw.println("Num: "+created_states);
             pw.println("Cost: "+cost);
@@ -35,13 +45,14 @@ public class DFID extends Ex1 implements Algorithm
         Hashtable<String, Node> open_list = new Hashtable<>(); //h in the pseudo-code is our open list
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_CYAN = "\u001B[36m";
-        final String bold = "\033[0;1m";
+        final String bold = "\033[1m";
 
         int level = 1;
         // iterate until we will find goal or nowhere to go
         for (int depth = 1, run = 1; depth < Integer.MAX_VALUE; depth++, run++, level++)
         {
-            System.out.println(bold+ANSI_CYAN+"\n==========Run #"+run+" , max depth = "+depth+" =========="+ANSI_RESET);
+            if(var.with_open)
+                System.out.println(bold+ANSI_CYAN+"\n==========Run #"+run+" , max depth = "+depth+" =========="+ANSI_RESET);
             String result = limited_DFS(start, depth, open_list);
             if (!result.equals("cutoff")) /* if we found a solution to problem return the path to goal, otherwise return no path */
             {
@@ -49,14 +60,13 @@ public class DFID extends Ex1 implements Algorithm
                 seconds = end / 1000.0;
                 break;
             }
-            System.out.println(bold+ANSI_CYAN+"\n --------- End of run ---------"+ANSI_RESET);
+            if(var.with_open)
+                System.out.println(bold+ANSI_CYAN+"\n --------- End of run ---------"+ANSI_RESET);
         }
+
+        /*reaching here in case goal was not found*/
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
-        System.out.println("path from start to goal: "+path);
-        System.out.println("Num: "+created_states); // Number of states is set
-        System.out.println("Cost: "+cost);
-        System.out.println(seconds+" seconds"); // seconds is set
 
         write_outputFile();
     }
