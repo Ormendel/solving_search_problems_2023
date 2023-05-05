@@ -17,7 +17,6 @@ public class BFS extends Ex1 implements Algorithm
             System.out.println("no path");
             System.out.println("Num: "+created_states); // Number of states is set
             System.out.println("Cost: inf");
-            System.out.println(seconds+" seconds"); // seconds is set
 
             pw.println("no path");
             pw.println("Num: "+created_states);
@@ -28,14 +27,16 @@ public class BFS extends Ex1 implements Algorithm
             System.out.println(path);
             System.out.println("Num: "+created_states); // Number of states is set
             System.out.println("Cost: "+cost);
-            System.out.println(seconds+" seconds"); // seconds is set
 
             pw.println(path);
             pw.println("Num: "+created_states);
             pw.println("Cost: "+cost);
         }
         if(var.with_time)
-            pw.print(seconds+" seconds");
+        {
+            System.out.println(seconds+" seconds"); // seconds is set
+            pw.print(seconds + " seconds");
+        }
         pw.close();
     }
     public static void run(Node start) throws IOException
