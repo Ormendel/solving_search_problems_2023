@@ -1,0 +1,4 @@
+D-D-D-D
+Num: 37
+Cost: 8
+0.013 seconds
