@@ -49,6 +49,39 @@ public class Ex1
 
         System.out.println();
     }
+    //Manhattan function as my heuristic function
+    public static int f(Node start)
+    {
+        //if the node is null return 0
+        if(start==null)
+            return  0;
+        //init distance to 0
+        int distance = 0;
+        for (int i = 0; i < start.getCurr_cell()[0]; i++)
+        {
+            for (int j = 0; j < start.getCurr_cell()[1]; j++)
+            {
+                //as long as the current location is different enter to check distance from target
+                if (var.board[i][j] != 'G')
+                {
+                    for (int k = 0; k < start.getCurr_cell()[0]; k++)
+                    {
+                        for (int l = 0; l < start.getCurr_cell()[1]; l++)
+                        {
+                            //when we reached the right spot
+                            if (var.board[k][l] == 'G')
+                            {
+                                //update distance to be according to the distance between start to target
+                                distance = Math.abs(i - k) + Math.abs(j - l);
+                                return distance;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return distance;
+    }
     private static void introToUser()
     {
         final String ANSI_RESET = "\u001b[0m";  // Text Reset
