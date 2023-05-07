@@ -79,7 +79,12 @@ public class DFID extends Ex1 implements Algorithm
         //check if we found a solution
         if (n.getTag() == 'G')
         {
-            cost = n.getCost(); // cost is set
+            Node temp = n;
+            while(temp.getParent()!=null)
+            {
+                cost+=temp.getWeight();
+                temp = temp.getParent();
+            }
             path = n.getPath().substring(0,n.getPath().length()-1); // path is set
             if(var.with_open)
                 System.out.println("\n Goal was found =] \n");

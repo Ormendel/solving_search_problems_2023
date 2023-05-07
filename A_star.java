@@ -44,15 +44,32 @@ public class A_star extends Ex1 implements Algorithm
         startTime = System.currentTimeMillis();
         // Creating empty priority queue
         PriorityQueue<Node> pQueue = new PriorityQueue<>((a1, a2) -> {
-            //where will order according to the Cost of the nodes
-            int a = a1.getCost();
-            int b = a2.getCost();
-            return a - b;
+            //ordering according to the accumulated cost of the nodes
+            int cost_a1 = a1.getF();
+            int cost_a2 = a2.getF();
+            if(cost_a1 != cost_a2)
+            {
+                return (cost_a1 - cost_a2);
+            }
+            //if the costs (estimated f value) is equal, we sort by creation time (referring to 'old-first' or 'new-first')
+            int id_a1 = a1.getId_num();
+            int id_a2 = a2.getId_num();
+            if(var.separator[1].equals("old-first"))
+            {
+                if(id_a1 < id_a2)
+                    return -1;
+                return 1;
+            }
+            //else - it's "new-first"
+            if(id_a1 < id_a2)
+                return 1;
+            return -1;
         });
 
         // Creating open list and closed list
         Hashtable<String, Node> open_list = new Hashtable<>();
         Hashtable<String, Node> closed_list = new Hashtable<>();
+
         //add to priority queue start state
         pQueue.add(start);
         open_list.put(start.getSearchedKey(),start);
@@ -70,12 +87,18 @@ public class A_star extends Ex1 implements Algorithm
             }
             //retrieve front node from the queue
             Node n = pQueue.poll();
+            open_list.remove(n.getSearchedKey(),n);
             //check if temp equal to target node if true return results
             if (n.getTag() =='G')
             {
                 long end = System.currentTimeMillis() - startTime;
                 seconds = end / 1000.0;
-                cost = n.getCost(); // cost is set
+                Node temp = n;
+                while(temp.getParent()!=null)
+                {
+                    cost+=temp.getWeight();
+                    temp = temp.getParent();
+                }
                 path = n.getPath().substring(0,n.getPath().length()-1); // path is set
                 write_outputFile();
                 return;
@@ -89,9 +112,9 @@ public class A_star extends Ex1 implements Algorithm
             //for each node from qu
             for (Node g : children.values())
             {
-                if (!closed_list.containsKey(g.getSearchedKey()) && !pQueue.contains(g))
+                ++created_states;
+                if (!closed_list.containsKey(g.getSearchedKey()) &&!open_list.containsKey(g.getSearchedKey()) && !pQueue.contains(g))
                 {
-                    ++created_states;
                     pQueue.add(g);
                     open_list.put(g.getSearchedKey(),g);
                 }
@@ -116,12 +139,18 @@ public class A_star extends Ex1 implements Algorithm
                     //if the new one is better
                     if (b < a)
                     {
-                        //erase old one
                         pQueue.remove(found);
                         open_list.remove(found.getSearchedKey());
-                        //add new one
                         pQueue.add(g);
                         open_list.put(g.getSearchedKey(),g);
+
+                        if(var.with_open)
+                        {
+                            System.out.println("\n========== Performing updates "+"==========");
+                            System.out.println("========== UPDATED OPEN LIST: ==========");
+                            System.out.println(open_list);
+                            System.out.println("================================="+"\n");
+                        }
                     }
                 }
 

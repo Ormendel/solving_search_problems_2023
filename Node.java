@@ -2,33 +2,46 @@ import java.util.*;
 
 public class Node extends Ex1
 {
-    private String id;
-    private String searchedKey;
+    private int id_num; //serial number
+    private String id; // (x1,y1)->(x2,y2)
+    private String searchedKey; //x2*y2
     private Node parent;
     private int[] parent_cell; //which previous position brought us here
     private int[] curr_cell; //which cell we are currently at
+
+    private int weight;// the cost value is calculated according to the cell we have stepped into
+    private int f; // f = g + h
     private String path = ""; //building path for our answer
-    private int cost;// the cost value is calculated according to the cell we have stepped into
 
     private String direction = ""; //saving where did we go
 
     private char tag = '?';
 
     /*====== Constructor ======*/
-    public Node(String id, String searchedKey, Node parent, int[] parent_cell, int[] curr_cell, String path, int cost, String direction, char tag)
+    public Node(int id_num,String id, String searchedKey, Node parent, int[] parent_cell, int[] curr_cell,int weight, int f, String path, String direction, char tag)
     {
-        this.id=id;
+        this.id_num=id_num;
+        this.id = id;
         this.searchedKey = searchedKey;
         this.parent = parent;
         this.parent_cell = parent_cell;
         this.curr_cell = curr_cell;
+        this.weight = weight;
+        this.f = f;
         this.path = path;
-        this.cost = cost;
         this.direction = direction;
         this.tag = tag;
     }
 
     /*====== Getters and Setters ======*/
+
+    public int getId_num() {
+        return id_num;
+    }
+
+    public void setId_num(int id_num) {
+        this.id_num = id_num;
+    }
 
     public String getId() {
         return id;
@@ -45,6 +58,7 @@ public class Node extends Ex1
     public void setSearchedKey(String searchedKey) {
         this.searchedKey = searchedKey;
     }
+
     public Node getParent() {
         return parent;
     }
@@ -57,7 +71,7 @@ public class Node extends Ex1
         return parent_cell;
     }
 
-    public void setParent_cell(int[] parent) {
+    public void setParent_cell(int[] parent_cell) {
         this.parent_cell = parent_cell;
     }
 
@@ -69,6 +83,22 @@ public class Node extends Ex1
         this.curr_cell = curr_cell;
     }
 
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public int getF() {
+        return f;
+    }
+
+    public void setF(int f) {
+        this.f = f;
+    }
+
     public String getPath() {
         return path;
     }
@@ -77,38 +107,24 @@ public class Node extends Ex1
         this.path = path;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
     public String getDirection() {
         return direction;
     }
+
     public void setDirection(String direction) {
         this.direction = direction;
     }
 
-    public char getTag()
-    {
+    public char getTag() {
         return tag;
     }
 
     public void setTag(char tag) {
         this.tag = tag;
     }
-
     /*=================================*/
 
-    /**
-     *
-     * @param n
-     * @return the cost of the step
-     */
-    public static int calculateCost(Node n)
+    public void setWeight_andF(Node n)
     {
         int cost = 0;
         int[] parent = n.getParent_cell();
@@ -164,20 +180,20 @@ public class Node extends Ex1
                     break;
             }
         }
-
-        return cost;
+        n.setWeight(cost);
+        n.setF(f(n)+cost);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Node node)) return false;
-        return getCost() == node.getCost() && getTag() == node.getTag() && Objects.equals(getId(), node.getId()) && Objects.equals(getParent(), node.getParent()) && Arrays.equals(getParent_cell(), node.getParent_cell()) && Arrays.equals(getCurr_cell(), node.getCurr_cell()) && Objects.equals(getPath(), node.getPath()) && Objects.equals(getDirection(), node.getDirection());
+        return getId_num() == node.getId_num() && getWeight() == node.getWeight() && getF() == node.getF() && getTag() == node.getTag() && Objects.equals(getId(), node.getId()) && Objects.equals(getSearchedKey(), node.getSearchedKey()) && Objects.equals(getParent(), node.getParent()) && Arrays.equals(getParent_cell(), node.getParent_cell()) && Arrays.equals(getCurr_cell(), node.getCurr_cell()) && Objects.equals(getPath(), node.getPath()) && Objects.equals(getDirection(), node.getDirection());
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getId(), getParent(), getPath(), getCost(), getDirection(), getTag());
+        int result = Objects.hash(getId_num(), getId(), getSearchedKey(), getParent(), getWeight(), getF(), getPath(), getDirection(), getTag());
         result = 31 * result + Arrays.hashCode(getParent_cell());
         result = 31 * result + Arrays.hashCode(getCurr_cell());
         return result;
@@ -187,20 +203,22 @@ public class Node extends Ex1
     public String toString() {
         if(parent == null) //start node
         {
-            return "Node{" + "id: "+id+
+            return "Node{serial_num = "+id_num+", id: "+id+
                     " --- parent_cell = undefined"+
                     ", curr_cell =" + "(" + (curr_cell[0]+1) + ","+ (curr_cell[1]+1)+")"+
                     ", path='" + path + '\'' +
-                    ", cost=" + cost +
+                    ", weight = " + weight +
+                    ", f = "+f+
                     ", direction='" + direction + '\'' +
                     ", tag=" + tag +
                     '}'+'\n';
         }
-        return "Node{" + "id: "+id+
+        return "Node{serial_num = "+id_num+", id: "+id+
                 " --- parent_cell =" + "(" + (parent_cell[0]+1) + ","+ (parent_cell[1]+1)+")"+
                 ", curr_cell =" + "(" + (curr_cell[0]+1) + ","+ (curr_cell[1]+1)+")"+
                 ", path='" + path + '\'' +
-                ", cost=" + cost +
+                ", weight = " + weight +
+                ", f = "+f+
                 ", direction='" + direction + '\'' +
                 ", tag=" + tag +
                 '}'+'\n';
