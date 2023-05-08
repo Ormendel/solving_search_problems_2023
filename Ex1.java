@@ -67,25 +67,12 @@ public class Ex1
     }
     private static void introToUser()
     {
-        final String ANSI_RESET = "\u001b[0m";  // Text Reset
-        final String BLUE = "\u001b[34m";
-        final String YELLOW = "\u001b[33m";
-        final String GREEN = "\u001b[32m";
-        final String bold = "\033[1m";
         final String start = "("+(var.row_start+1)+","+(var.column_start+1)+")";
 
-        System.out.println( bold+BLUE + "Chosen algorithm: "+ BLUE +var.algo + ANSI_RESET);
-        System.out.println(bold + YELLOW + "Activating "+ var.algo +" from "+start+":"+ANSI_RESET);
-        System.out.println(GREEN + "-------------------------------- results -------------------------------- \n"+ANSI_RESET);
+        System.out.println("Chosen algorithm: "+var.algo);
+        System.out.println("Activating "+ var.algo +" from "+start+":");
+        System.out.println("-------------------------------- results -------------------------------- \n");
 
-    }
-    public static void setCost_ofPath(Node n)
-    {
-        while(n.getParent()!=null)
-        {
-            cost+=n.getWeight();
-            n = n.getParent();
-        }
     }
     public static void main(String[] args) throws IOException
     {
@@ -104,7 +91,7 @@ public class Ex1
         String start_id = "("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")->("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")";
         long curr_time = System.currentTimeMillis();
         Node start = new Node((serial_num++),start_id, ""+(var.row_start+1)+""+(var.column_start+1),null, new int[]{-1,-1},curr_cell,0,0,"", "START", 'S');
-        start.setWeight_andF(start);
+        start.setF(f(start));
         switch(var.algo)
         {
             case "BFS":

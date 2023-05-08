@@ -44,16 +44,13 @@ public class DFID extends Ex1 implements Algorithm
     {
         startTime = System.currentTimeMillis();
         Hashtable<String, Node> open_list = new Hashtable<>(); //h in the pseudo-code is our open list
-        final String ANSI_RESET = "\u001B[0m";
-        final String ANSI_CYAN = "\u001B[36m";
-        final String bold = "\033[1m";
 
         int level = 1;
         // iterate until we will find goal or nowhere to go
         for (int depth = 1, run = 1; depth < Integer.MAX_VALUE; depth++, run++, level++)
         {
             if(var.with_open)
-                System.out.println(bold+ANSI_CYAN+"\n==========Run #"+run+" , max depth = "+depth+" =========="+ANSI_RESET);
+                System.out.println("\n==========Run #"+run+" , max depth = "+depth+" ==========");
             String result = limited_DFS(start, depth, open_list);
             if (!result.equals("cutoff")) /* if we found a solution to problem return the path to goal, otherwise return no path */
             {
@@ -62,7 +59,7 @@ public class DFID extends Ex1 implements Algorithm
                 break;
             }
             if(var.with_open)
-                System.out.println(bold+ANSI_CYAN+"\n --------- End of run ---------"+ANSI_RESET);
+                System.out.println("\n --------- End of run ---------");
         }
 
         /*reaching here in case goal was not found*/
@@ -75,11 +72,11 @@ public class DFID extends Ex1 implements Algorithm
 
     private static String limited_DFS(Node n, int limit, Hashtable<String, Node> open_list)
     {
-        ++created_states; // the right place to put this line because all states will be counted except from 'G' (goal)
+        ++created_states;
         //check if we found a solution
         if (n.getTag() == 'G')
         {
-            setCost_ofPath(n);
+            cost = n.getWeight();
             path = n.getPath().substring(0,n.getPath().length()-1); // path is set
             if(var.with_open)
                 System.out.println("\n Goal was found =] \n");

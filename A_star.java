@@ -88,18 +88,18 @@ public class A_star extends Ex1 implements Algorithm
             //retrieve front node from the queue
             Node n = pQueue.poll();
             open_list.remove(n.getSearchedKey(),n);
-            System.out.println("=============== "+n.getSearchedKey()+" to closed-list ===============\n");
             //check if temp equal to target node if true return results
             if (n.getTag() =='G')
             {
-                setCost_ofPath(n);
+                cost = n.getWeight();
                 path = n.getPath().substring(0,n.getPath().length()-1); // path is set
                 long end = System.currentTimeMillis() - startTime;
                 seconds = end / 1000.0;
-                System.out.println("\n Goal was found =] \n");
+                System.out.println("\nOptimal goal was found =] \n");
                 write_outputFile();
                 return;
             }
+            System.out.println("=============== "+n.getSearchedKey()+" to closed-list ===============\n");
             closed_list.put(n.getSearchedKey(), n);
 
             //collect available operators
@@ -130,9 +130,9 @@ public class A_star extends Ex1 implements Algorithm
                             break;
                         }
                     }
-                    //get Manhattan distance value for each node
-                    a = f(found);
-                    b = f(g);
+                    //Comparing between f values
+                    a = found.getF();
+                    b = g.getF();
                     //if the new one is better
                     if (b < a)
                     {
@@ -140,18 +140,16 @@ public class A_star extends Ex1 implements Algorithm
                         open_list.remove(found.getSearchedKey());
                         pQueue.add(g);
                         open_list.put(g.getSearchedKey(),g);
-
-                        if(var.with_open)
-                        {
-                            System.out.println("\n========== Performing updates "+"==========");
-                            System.out.println("========== UPDATED OPEN LIST: ==========");
-                            System.out.println(open_list);
-                            System.out.println("================================="+"\n");
-                        }
                     }
                 }
-
                 //end run for operators
+            }
+            if(var.with_open)
+            {
+                System.out.println("\n========== Performing updates "+"==========");
+                System.out.println("========== UPDATED OPEN LIST: ==========");
+                System.out.println(open_list);
+                System.out.println("================================="+"\n");
             }
         }
         /* Reaching here means goal was not found */

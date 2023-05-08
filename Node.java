@@ -124,7 +124,7 @@ public class Node extends Ex1
     }
     /*=================================*/
 
-    public void setWeight_andF(Node n)
+    public int calculateWeight(Node n)
     {
         int cost = 0;
         int[] parent = n.getParent_cell();
@@ -180,15 +180,16 @@ public class Node extends Ex1
                     break;
             }
         }
-        n.setWeight(cost);
-        n.setF(f(n)+cost);
+        return cost;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Node node)) return false;
-        return getId_num() == node.getId_num() && getWeight() == node.getWeight() && getF() == node.getF() && getTag() == node.getTag() && Objects.equals(getId(), node.getId()) && Objects.equals(getSearchedKey(), node.getSearchedKey()) && Objects.equals(getParent(), node.getParent()) && Arrays.equals(getParent_cell(), node.getParent_cell()) && Arrays.equals(getCurr_cell(), node.getCurr_cell()) && Objects.equals(getPath(), node.getPath()) && Objects.equals(getDirection(), node.getDirection());
+        Node n = (Node)o;
+        return (getSearchedKey().equals(n.getSearchedKey()));
+
     }
 
     @Override
