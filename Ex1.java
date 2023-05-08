@@ -107,6 +107,7 @@ public class Ex1
                 break;
             case "IDA*":
                 IDA_star algo4 = new IDA_star();
+                algo4.run(start);
                 break;
             case "DFBnB":
                 DFBnB algo5 = new DFBnB();
