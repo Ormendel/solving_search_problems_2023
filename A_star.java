@@ -88,18 +88,15 @@ public class A_star extends Ex1 implements Algorithm
             //retrieve front node from the queue
             Node n = pQueue.poll();
             open_list.remove(n.getSearchedKey(),n);
+            System.out.println("=============== "+n.getSearchedKey()+" to closed-list ===============\n");
             //check if temp equal to target node if true return results
             if (n.getTag() =='G')
             {
+                setCost_ofPath(n);
+                path = n.getPath().substring(0,n.getPath().length()-1); // path is set
                 long end = System.currentTimeMillis() - startTime;
                 seconds = end / 1000.0;
-                Node temp = n;
-                while(temp.getParent()!=null)
-                {
-                    cost+=temp.getWeight();
-                    temp = temp.getParent();
-                }
-                path = n.getPath().substring(0,n.getPath().length()-1); // path is set
+                System.out.println("\n Goal was found =] \n");
                 write_outputFile();
                 return;
             }

@@ -99,12 +99,7 @@ public class BFS extends Ex1 implements Algorithm
         seconds = endTime / 1000.0;
         if(goal!=null)
         {
-            Node temp = goal;
-            while(temp.getParent()!=null)
-            {
-                cost+=temp.getWeight();
-                temp = temp.getParent();
-            }
+            setCost_ofPath(goal);
             path = goal.getPath().substring(0, goal.getPath().length() - 1); // path is set
         }
         write_outputFile();

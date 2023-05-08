@@ -79,6 +79,14 @@ public class Ex1
         System.out.println(GREEN + "-------------------------------- results -------------------------------- \n"+ANSI_RESET);
 
     }
+    public static void setCost_ofPath(Node n)
+    {
+        while(n.getParent()!=null)
+        {
+            cost+=n.getWeight();
+            n = n.getParent();
+        }
+    }
     public static void main(String[] args) throws IOException
     {
         try
