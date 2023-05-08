@@ -14,29 +14,18 @@ public class A_star extends Ex1 implements Algorithm
 
         if(path.isEmpty())
         {
-            System.out.println("no path");
-            System.out.println("Num: "+created_states); // Number of states is set
-            System.out.println("Cost: inf");
-
             pw.println("no path");
             pw.println("Num: "+created_states);
             pw.println("Cost: inf");
         }
         else
         {
-            System.out.println(path);
-            System.out.println("Num: "+created_states); // Number of states is set
-            System.out.println("Cost: "+cost);
-
             pw.println(path);
             pw.println("Num: "+created_states);
             pw.println("Cost: "+cost);
         }
         if(var.with_time)
-        {
-            System.out.println(seconds+" seconds"); // seconds is set
             pw.print(seconds + " seconds");
-        }
         pw.close();
     }
     public static void run(Node start) throws IOException
@@ -95,11 +84,13 @@ public class A_star extends Ex1 implements Algorithm
                 path = n.getPath().substring(0,n.getPath().length()-1); // path is set
                 long end = System.currentTimeMillis() - startTime;
                 seconds = end / 1000.0;
-                System.out.println("\nOptimal goal was found =] \n");
+                if(var.with_open)
+                    System.out.println("\nOptimal goal was found =] \n");
                 write_outputFile();
                 return;
             }
-            System.out.println("=============== "+n.getSearchedKey()+" to closed-list ===============\n");
+            if(var.with_open)
+                System.out.println("=============== "+n.getSearchedKey()+" to closed-list ===============\n");
             closed_list.put(n.getSearchedKey(), n);
 
             //collect available operators
