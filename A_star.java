@@ -97,7 +97,7 @@ public class A_star extends Ex1 implements Algorithm
             Operator op = new Operator();
             op.setN(n);
             LinkedHashMap<String,Node> children= op.operator(op.getN());
-            //for each node from qu
+            //for each node from children
             for (Node g : children.values())
             {
                 ++created_states;
