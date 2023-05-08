@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class BFS extends Ex1 implements Algorithm
 {
-    private static void write_outputFile() throws IOException
+    static void write_outputFile() throws IOException
     {
         File file = new File("outputFiles/my_output_for_BFS.txt");
         FileWriter fw = new FileWriter(file,true);

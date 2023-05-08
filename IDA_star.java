@@ -8,7 +8,7 @@ import java.util.Hashtable;
 
 public class IDA_star extends Ex1 implements Algorithm
 {
-    private static void write_outputFile() throws IOException
+    static void write_outputFile() throws IOException
     {
         File file = new File("outputFiles/my_output_for_IDAstar.txt");
         FileWriter fw = new FileWriter(file,true);

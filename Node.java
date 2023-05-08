@@ -186,7 +186,7 @@ public class Node extends Ex1
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Node node)) return false;
+        //if (!(o instanceof Node node)) return false;
         Node n = (Node)o;
         return (getSearchedKey().equals(n.getSearchedKey()));
 
