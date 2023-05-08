@@ -101,7 +101,7 @@ public class A_star extends Ex1 implements Algorithm
             for (Node g : children.values())
             {
                 ++created_states;
-                if (!closed_list.containsKey(g.getSearchedKey()) &&!open_list.containsKey(g.getSearchedKey()) && !pQueue.contains(g))
+                if (!closed_list.containsKey(g.getSearchedKey()) && !pQueue.contains(g))
                 {
                     pQueue.add(g);
                     open_list.put(g.getSearchedKey(),g);
