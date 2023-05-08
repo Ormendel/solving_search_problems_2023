@@ -6,7 +6,7 @@ import java.util.*;
 
 public class DFBnB extends Ex1
 {
-    private static void write_outputFile() throws IOException
+    static void write_outputFile() throws IOException
     {
         File file = new File("outputFiles/my_output_for_DFBnB.txt");
         FileWriter fw = new FileWriter(file,true);
@@ -42,7 +42,8 @@ public class DFBnB extends Ex1
         ++created_states;
         //init t to be max size
         int t = Integer.MAX_VALUE; String result = null;
-        System.out.println("\n========== threshold = +Infinity ==========");
+        if(var.with_open)
+            System.out.println("\n========== threshold = +Infinity ==========");
         //while stack isn't empty
         while (!stack.isEmpty())
         {
@@ -57,7 +58,10 @@ public class DFBnB extends Ex1
             //we need to check if we've been here -> loop avoidance
             //if we've been remove node from hashTable
             if (out.containsKey(n.getSearchedKey()))
+            {
+                System.out.println("n in out:\n"+n);
                 open_list.remove(n.getSearchedKey(),n);
+            }
             else
             {
                 out.put(n.getSearchedKey(),n); //mark n node as out -> add to out group
@@ -96,6 +100,8 @@ public class DFBnB extends Ex1
 
                 //for all of the nodes from priority queue
                 ArrayList<Node> list = new ArrayList<>(pQueue);
+                System.out.println("node = \n"+n);
+                System.out.println("size of list = "+list.size());
                 created_states += list.size();
                 for (int i = 0; i < list.size(); i++)
                 {
@@ -130,7 +136,8 @@ public class DFBnB extends Ex1
                     {
                         t = g.getF();
                         iteration = 1;
-                        System.out.println("\n========== threshold = "+t+" ==========");
+                        if(var.with_open)
+                            System.out.println("\n========== threshold = "+t+" ==========");
                         for(int j = i; j<list.size();++j)
                             list.remove(j);
                         cost = g.getWeight(); // cost is set
@@ -139,6 +146,7 @@ public class DFBnB extends Ex1
                         seconds = end / 1000.0;
                         if(var.with_open)
                             System.out.println("\nOptimal goal was found =] \n");
+                        //break;
 
                     }
 
@@ -150,6 +158,7 @@ public class DFBnB extends Ex1
                     //insert to stack and hashtable all nodes that were left
                     stack.push(temp);
                     open_list.put(temp.getSearchedKey(), temp);
+                    ++created_states;
                 }
             }
         }
