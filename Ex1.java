@@ -111,6 +111,7 @@ public class Ex1
                 break;
             case "DFBnB":
                 DFBnB algo5 = new DFBnB();
+                algo5.run(start);
                 break;
             default:
                 break;
