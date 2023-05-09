@@ -1,0 +1,49 @@
+D-D-D-D
+Num: 62
+Cost: 8
+0.048 seconds
+
+D-D-D-D
+Num: 62
+Cost: 8
+0.047 seconds
+
+D-D-D-D
+Num: 59
+Cost: 8
+0.056 seconds
+
+D-D-D-D
+Num: 63
+Cost: 8
+0.052 seconds
+
+D-D-D-D
+Num: 62
+Cost: 8
+0.044 seconds
+
+D-D-D-D
+Num: 62
+Cost: 8
+0.05 seconds
+
+D-D-D-D
+Num: 62
+Cost: 8
+0.055 seconds
+
+D-D-D-D
+Num: 62
+Cost: 8
+0.051 seconds
+
+D-D-D-D
+Num: 62
+Cost: 8
+0.058 seconds
+
+D-D-D-D
+Num: 62
+Cost: 8
+0.051 seconds

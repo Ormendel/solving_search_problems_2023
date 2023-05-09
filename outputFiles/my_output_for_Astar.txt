@@ -1,4 +1,14 @@
 D-D-D-D
-Num: 37
+Num: 27
 Cost: 8
-0.013 seconds
+0.11 seconds
+
+D-D-D-D
+Num: 27
+Cost: 8
+0.109 seconds
+
+D-D-D-D
+Num: 27
+Cost: 8
+0.049 seconds
