@@ -4,31 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
-public class DFBnB extends Ex1
+public class DFBnB extends Ex1 implements Algorithm
 {
-    static void write_outputFile() throws IOException
-    {
-        File file = new File("outputFiles/my_output_for_DFBnB.txt");
-        FileWriter fw = new FileWriter(file,true);
-        PrintWriter pw = new PrintWriter(fw);
-
-        if(path.isEmpty())
-        {
-            pw.println("no path");
-            pw.println("Num: "+created_states);
-            pw.println("Cost: inf");
-        }
-        else
-        {
-            pw.println(path);
-            pw.println("Num: "+created_states);
-            pw.println("Cost: "+cost);
-        }
-        if(var.with_time)
-            pw.print(seconds + " seconds");
-        pw.close();
-    }
-    public static String run(Node start) throws IOException
+    public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
         //init stack,hashMap,hashSet
@@ -166,8 +144,7 @@ public class DFBnB extends Ex1
         seconds = end / 1000.0;
 
         path = result;
-        write_outputFile();
-        return result;
+        //return result;
     }
 
 }

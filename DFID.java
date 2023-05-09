@@ -6,29 +6,6 @@ import java.util.*;
 
 public class DFID extends Ex1 implements Algorithm
 {
-    static void write_outputFile() throws IOException
-    {
-        File file = new File("outputFiles/my_output_for_DFID.txt");
-        FileWriter fw = new FileWriter(file,true);
-        PrintWriter pw = new PrintWriter(fw);
-
-        if(path.isEmpty())
-        {
-            pw.println("no path");
-            pw.println("Num: "+created_states);
-            pw.println("Cost: inf");
-        }
-        else
-        {
-            pw.println(path);
-            pw.println("Num: "+created_states);
-            pw.println("Cost: "+cost);
-        }
-        if(var.with_time)
-            pw.print(seconds + " seconds");
-        pw.close();
-    }
-
     public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
@@ -54,8 +31,6 @@ public class DFID extends Ex1 implements Algorithm
         /*reaching here in case goal was not found*/
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
-
-        write_outputFile();
     }
 
 

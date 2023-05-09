@@ -6,28 +6,6 @@ import java.util.Queue;
 
 public class BFS extends Ex1 implements Algorithm
 {
-    static void write_outputFile() throws IOException
-    {
-        File file = new File("outputFiles/my_output_for_BFS.txt");
-        FileWriter fw = new FileWriter(file,true);
-        PrintWriter pw = new PrintWriter(fw);
-
-        if(path.isEmpty())
-        {
-            pw.println("no path");
-            pw.println("Num: "+created_states);
-            pw.println("Cost: inf");
-        }
-        else
-        {
-            pw.println(path);
-            pw.println("Num: "+created_states);
-            pw.println("Cost: "+cost);
-        }
-        if(var.with_time)
-            pw.print(seconds + " seconds");
-        pw.close();
-    }
     public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
@@ -91,6 +69,5 @@ public class BFS extends Ex1 implements Algorithm
             cost = goal.getWeight();
             path = goal.getPath().substring(0, goal.getPath().length() - 1); // path is set
         }
-        write_outputFile();
     }
 }

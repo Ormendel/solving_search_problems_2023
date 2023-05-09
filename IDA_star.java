@@ -8,28 +8,6 @@ import java.util.Hashtable;
 
 public class IDA_star extends Ex1 implements Algorithm
 {
-    static void write_outputFile() throws IOException
-    {
-        File file = new File("outputFiles/my_output_for_IDAstar.txt");
-        FileWriter fw = new FileWriter(file,true);
-        PrintWriter pw = new PrintWriter(fw);
-
-        if(path.isEmpty())
-        {
-            pw.println("no path");
-            pw.println("Num: "+created_states);
-            pw.println("Cost: inf");
-        }
-        else
-        {
-            pw.println(path);
-            pw.println("Num: "+created_states);
-            pw.println("Cost: "+cost);
-        }
-        if(var.with_time)
-            pw.print(seconds + " seconds");
-        pw.close();
-    }
     public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
@@ -99,7 +77,6 @@ public class IDA_star extends Ex1 implements Algorithm
                             seconds = end / 1000.0;
                             if(var.with_open)
                                 System.out.println("\nOptimal goal was found =] \n");
-                            write_outputFile();
                             return;
                         }
                         stack.add(g);
