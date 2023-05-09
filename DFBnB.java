@@ -37,7 +37,6 @@ public class DFBnB extends Ex1 implements Algorithm
             //if we've been remove node from hashTable
             if (out.containsKey(n.getSearchedKey()))
             {
-                System.out.println("n in out:\n"+n);
                 open_list.remove(n.getSearchedKey(),n);
             }
             else
@@ -50,36 +49,14 @@ public class DFBnB extends Ex1 implements Algorithm
                 op.setN(n);
                 LinkedHashMap<String,Node> regularQueue= op.operator(op.getN());
 
-                //Create priority queue according to cost of Manhattan function
-                PriorityQueue<Node> pQueue = new PriorityQueue<>((a1, a2) -> {
-                    //ordering according to the accumulated cost of the nodes
-                    int cost_a1 = a1.getF();
-                    int cost_a2 = a2.getF();
-                    if(cost_a1 != cost_a2)
-                    {
-                        return (cost_a1 - cost_a2);
-                    }
-                    //if the costs (estimated f value) is equal, we sort by creation time (referring to 'old-first' or 'new-first')
-                    int id_a1 = a1.getId_num();
-                    int id_a2 = a2.getId_num();
-                    if(var.separator[1].equals("old-first"))
-                    {
-                        if(id_a1 < id_a2)
-                            return -1;
-                        return 1;
-                    }
-                    //else - it's "new-first"
-                    if(id_a1 < id_a2)
-                        return 1;
-                    return -1;
-                });
-                //add to priority queue all of nodes from the operator queue and sort them
-                pQueue.addAll(regularQueue.values());
-
+                NodeComparator nc = new NodeComparator(); //our comparator
                 //for all of the nodes from priority queue
-                ArrayList<Node> list = new ArrayList<>(pQueue);
-                System.out.println("node = \n"+n);
-                System.out.println("size of list = "+list.size());
+                ArrayList<Node> list = new ArrayList<>();
+                for(Node temp : regularQueue.values())
+                    list.add(temp);
+                list.sort(nc);
+                for(Node v : list)
+                    System.out.println(v.getSearchedKey()+" : "+v.getF()+", "+"time = "+v.getId_num());
                 created_states += list.size();
                 for (int i = 0; i < list.size(); i++)
                 {
@@ -131,8 +108,10 @@ public class DFBnB extends Ex1 implements Algorithm
                 }
                 //reverse list
                 Collections.reverse(list);
+                System.out.println("reversed: -->");
                 for (Node temp : list)
                 {
+                    System.out.println(temp.getSearchedKey()+" : "+temp.getF()+", "+"time = "+temp.getId_num());
                     //insert to stack and hashtable all nodes that were left
                     stack.push(temp);
                     open_list.put(temp.getSearchedKey(), temp);
