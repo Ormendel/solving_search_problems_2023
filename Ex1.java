@@ -78,14 +78,14 @@ public class Ex1
     {
         try
         {
-            var.read_and_initialize_from_inputFile("inputFiles/input.txt");
+            var.read_and_initialize_from_inputFile("input.txt");
         }
         catch (FileNotFoundException e)
         {
             System.out.println("An error occurred while trying opening the file =[");
             e.printStackTrace();
         }
-        introToUser(); //check if all went through ok
+        //introToUser(); //check if all went through ok
 
         int[] curr_cell = {var.row_start, var.column_start};
         String start_id = "("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")->("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")";
@@ -117,6 +117,8 @@ public class Ex1
                 break;
 
         }
+        OutputWriter ow = new OutputWriter();
+        ow.write_outputFile();
 
     }
 }
