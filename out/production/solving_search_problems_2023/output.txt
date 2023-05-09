@@ -1,0 +1,8 @@
+D-D-D-D
+Num: 57
+Cost: 8
+0.108 seconds
+D-D-D-D
+Num: 62
+Cost: 8
+0.057 seconds

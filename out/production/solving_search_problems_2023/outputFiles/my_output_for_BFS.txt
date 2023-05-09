@@ -1,0 +1,19 @@
+D-RD-D-LD
+Num: 39
+Cost: 21
+0.023 seconds
+
+D-RD-D-LD
+Num: 39
+Cost: 21
+0.041 seconds
+
+D-RD-D-LD
+Num: 39
+Cost: 21
+0.043 seconds
+
+D-RD-D-LD
+Num: 39
+Cost: 21
+0.013 seconds
