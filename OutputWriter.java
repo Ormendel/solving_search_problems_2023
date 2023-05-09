@@ -3,9 +3,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class OutputWriter extends Ex1
+class OutputWriter extends Ex1
 {
-    void write_outputFile() throws IOException
+    public static void write_outputFile() throws IOException
     {
         File file = new File("output.txt");
         FileWriter fw = new FileWriter(file,true);

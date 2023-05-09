@@ -19,6 +19,8 @@ import java.util.Queue;
 public class Ex1
 {
     static InputReader var = new InputReader();
+    static OutputWriter ow = new OutputWriter();
+
 
     static int serial_num = 1; // keep track of nodes
 
@@ -117,8 +119,10 @@ public class Ex1
                 break;
 
         }
-        OutputWriter ow = new OutputWriter();
+
+        //we have the results, now save to output file
         ow.write_outputFile();
+
 
     }
 }
