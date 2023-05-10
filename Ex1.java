@@ -64,7 +64,9 @@ public class Ex1
         int row_goal = var.row_goal;
         int column_goal = var.column_goal;
         //update distance to be according to the distance between start to target
-        int distance = Math.abs(i - row_goal) + Math.abs(j - column_goal);
+        //int distance = Math.abs(i - row_goal) + Math.abs(j - column_goal);
+        int distance = Math.max(Math.abs(i - row_goal), Math.abs(j - column_goal)); //Diagonal distance
+        //int distance = (int)Math.sqrt(Math.pow(i-row_goal,2)+Math.pow(j-column_goal,2));
         return distance;
     }
     private static void introToUser()

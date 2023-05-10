@@ -27,7 +27,7 @@ public class DFBnB extends Ex1 implements Algorithm
         {
             if(var.with_open)
             {
-                System.out.println("========== Stack's iteration number = "+(iteration++)+" ==========");
+                System.out.println("========== open-list --> iteration number = "+(iteration++)+" ==========");
                 System.out.println(open_list);
                 System.out.println("================================="+"\n");
             }
@@ -43,7 +43,6 @@ public class DFBnB extends Ex1 implements Algorithm
             {
                 out.put(n.getSearchedKey(),n); //mark n node as out -> add to out group
                 stack.push(n);//push n to stack
-
                 //get all operators nodes to queue
                 Operator op = new Operator();
                 op.setN(n);
@@ -51,12 +50,9 @@ public class DFBnB extends Ex1 implements Algorithm
 
                 NodeComparator nc = new NodeComparator(); //our comparator
                 //for all of the nodes from priority queue
-                ArrayList<Node> list = new ArrayList<>();
-                for(Node temp : regularQueue.values())
-                    list.add(temp);
+                ArrayList<Node> list = new ArrayList<>(regularQueue.values());
                 list.sort(nc);
-                for(Node v : list)
-                    System.out.println(v.getSearchedKey()+" : "+v.getF()+", "+"time = "+v.getId_num());
+
                 created_states += list.size();
                 for (int i = 0; i < list.size(); i++)
                 {
@@ -87,10 +83,10 @@ public class DFBnB extends Ex1 implements Algorithm
                         }
                         //if new node equals to target stop return answer
                     }
-                    if (g.getTag() =='G')
+                    else if (g.getTag() =='G')
                     {
                         t = g.getF();
-                        iteration = 1;
+                        iteration = 1; //reset iteration number to 1
                         if(var.with_open)
                             System.out.println("\n========== threshold = "+t+" ==========");
                         for(int j = i; j<list.size();++j)
@@ -99,23 +95,16 @@ public class DFBnB extends Ex1 implements Algorithm
                         result = g.getPath().substring(0,g.getPath().length()-1); // path is set
                         long end = System.currentTimeMillis() - startTime;
                         seconds = end / 1000.0;
-                        if(var.with_open)
-                            System.out.println("\nOptimal goal was found =] \n");
-                        //break;
-
                     }
 
-                }
+                } // end for
                 //reverse list
                 Collections.reverse(list);
-                System.out.println("reversed: -->");
                 for (Node temp : list)
                 {
-                    System.out.println(temp.getSearchedKey()+" : "+temp.getF()+", "+"time = "+temp.getId_num());
                     //insert to stack and hashtable all nodes that were left
                     stack.push(temp);
                     open_list.put(temp.getSearchedKey(), temp);
-                    ++created_states;
                 }
             }
         }
