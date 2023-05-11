@@ -8,6 +8,7 @@ public class DFID extends Ex1 implements Algorithm
 {
     public static void run(Node start) throws IOException
     {
+        ++created_states; // count also the start node for first iteration
         startTime = System.currentTimeMillis();
         Hashtable<String, Node> open_list = new Hashtable<>(); //h in the pseudo-code is our open list
 
@@ -36,7 +37,6 @@ public class DFID extends Ex1 implements Algorithm
 
     private static String limited_DFS(Node n, int limit, Hashtable<String, Node> open_list)
     {
-        ++created_states;
         //check if we found a solution
         if (n.getTag() == 'G')
         {
@@ -63,9 +63,11 @@ public class DFID extends Ex1 implements Algorithm
             LinkedHashMap<String,Node> children= op.operator(op.getN());
             for (Node g : children.values())//for each node in children - check
             {
-                if (open_list.containsKey(g.getSearchedKey()))
+                ++created_states;
+                if (open_list.containsKey(g.getSearchedKey())) {
                     /* if hash table contains that path then continue to next operator */
                     continue;
+                }
                 String result = limited_DFS(g, limit - 1, open_list); /* recurse to deeper layer with the current node */
                 if (result.equals("cutoff")) /* if the string equals to cutoff then isCutoff will also will set to true */
                     isCutoff = true;
