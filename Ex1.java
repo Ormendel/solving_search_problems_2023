@@ -54,7 +54,7 @@ public class Ex1
         System.out.println();
     }
     //Manhattan function as my heuristic function (useful for 8-tile puzzle)
-    public static int f(Node n)
+    public static int heuristic(Node n)
     {
         //if the node is G - return 0
         if(n.getTag() == 'G')
@@ -94,7 +94,7 @@ public class Ex1
         int[] curr_cell = {var.row_start, var.column_start};
         String start_id = "("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")->("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")";
         Node start = new Node((serial_num++),start_id, ""+(var.row_start+1)+""+(var.column_start+1),null, new int[]{-1,-1},curr_cell,0,0,"", "START", 'S');
-        start.setF(f(start));
+        start.setF(heuristic(start));
         switch(var.algo)
         {
             case "BFS":

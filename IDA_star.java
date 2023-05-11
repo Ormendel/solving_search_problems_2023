@@ -15,7 +15,7 @@ public class IDA_star extends Ex1 implements Algorithm
         Stack<Node> stack = new Stack<>();
         Hashtable<String,Node> open_list = new Hashtable<>();
         Hashtable<String,Node> out = new Hashtable<>(); //we can also rename it as visited
-        int t = f(start);
+        int t = heuristic(start);
         ++created_states;
         while (t != Integer.MAX_VALUE)
         {

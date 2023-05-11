@@ -61,7 +61,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "R", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -80,7 +80,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "RD", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -98,7 +98,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "D", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -116,7 +116,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "LD", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -134,7 +134,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "L", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -152,7 +152,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "LU", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -170,7 +170,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "U", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -188,7 +188,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "RU", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -210,7 +210,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "R", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -228,7 +228,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "RU", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -246,7 +246,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "U", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -264,7 +264,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "LU", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -282,7 +282,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "L", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -300,7 +300,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "LD", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -318,7 +318,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "D", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
@@ -336,7 +336,7 @@ public class Operator extends Ex1
                 String id = "("+Integer.toString(n.getCurr_cell()[0]+1)+","+Integer.toString(n.getCurr_cell()[1]+1)+")->("+Integer.toString(new_i)+","+Integer.toString(new_j)+")";
                 Node child = new Node(serial_num++,id,""+new_i+""+new_j,n,n.getCurr_cell(), new int[]{new_i-1, new_j-1}, -1, -1,insert_path, "RD", var.board[new_i-1][new_j-1]);
                 child.setWeight(n.getWeight() + child.calculateWeight(child));
-                child.setF(f(child) + child.getWeight());
+                child.setF(heuristic(child) + child.getWeight());
                 if(n.getParent()==null)
                     children.put(child.getSearchedKey(),child);
                 else if(!n.getParent().getSearchedKey().equals(child.getSearchedKey()))
