@@ -9,10 +9,10 @@ public class BFS extends Ex1 implements Algorithm
     public static void run(Node start) throws IOException
     {
         startTime = System.currentTimeMillis();
-        LinkedHashMap<String,Node> q = new LinkedHashMap<>();
+        Queue<Node> q = new LinkedList<>();
         Hashtable<String, Node> open_list = new Hashtable<>();
         Hashtable<String, Node> closed_list = new Hashtable<>();
-        q.put(start.getSearchedKey(),start);
+        q.add(start);
         ++created_states;
         Node goal = null;
         boolean flag = false; /*This boolean variable indicates if we found the goal state.*/
@@ -27,9 +27,7 @@ public class BFS extends Ex1 implements Algorithm
                 System.out.println(open_list);
                 System.out.println("================================="+"\n");
             }
-            String key_n = q.entrySet().iterator().next().getKey();
-            Node n = q.get(key_n); // get first node currently in hashmap
-            q.remove(key_n);
+            Node n = q.poll(); // get first node currently in hashmap
 
             if((open_list.containsKey(n.getSearchedKey())))
                 open_list.remove(n.getSearchedKey());
@@ -48,7 +46,7 @@ public class BFS extends Ex1 implements Algorithm
                 }
                 if(open_list.containsKey(g.getSearchedKey()) || closed_list.containsKey(g.getSearchedKey()))
                     continue;
-                q.put(g.getSearchedKey(),g);
+                q.add(g);
                 open_list.put(g.getSearchedKey(), g); //all children are being inserted into open_list except from G (goal)
             }
             closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
