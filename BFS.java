@@ -43,6 +43,7 @@ public class BFS extends Ex1 implements Algorithm
                 {
                     flag=true;
                     goal = g;
+                    System.out.println("Goal was found =]\n");
                     break;
                 }
                 if(open_list.containsKey(g.getSearchedKey()) || closed_list.containsKey(g.getSearchedKey()))
@@ -53,14 +54,6 @@ public class BFS extends Ex1 implements Algorithm
             closed_list.put(n.getSearchedKey(), n); // finished iterating over all the children, so add to closed list
             //System.out.println("open list: \n"+open_list);
             //System.out.println("closed list: \n"+closed_list);
-        }
-        if(var.with_open) //Printing last iteration to check the queue, because the goal was found
-        {
-            System.out.println("\n==========LAST ITERATION : #"+(iteration)+"==========");
-            System.out.println("========== OPEN LIST: ==========");
-            System.out.println(open_list);
-            System.out.println("================================="+"\n");
-            System.out.println("Goal was found =]\n");
         }
         endTime = System.currentTimeMillis() - startTime;
         seconds = endTime / 1000.0;
