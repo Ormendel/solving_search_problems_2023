@@ -95,7 +95,6 @@ public class Ex1
         edge_cases.tests();
 
         //introToUser(); //check if all went through ok
-
         int[] curr_cell = {var.row_start, var.column_start};
         String start_id = "("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")->("+(curr_cell[0]+1)+","+(curr_cell[1]+1)+")";
         Node start = new Node((serial_num++),start_id, ""+(var.row_start+1)+""+(var.column_start+1),null, new int[]{-1,-1},curr_cell,0,0,"", "START", 'S');
