@@ -41,10 +41,20 @@ class InputReader
         separator = clock_direction_with_fn.split(" ");
         String temp = reader.nextLine(); //we will use this variable just for a simple check each time
         /*====== LINE 3 ======*/
+        if(!temp.equals("no time") && !temp.equals("with time"))
+        {
+            System.err.println("Error: input.txt, line 3 : must be 'no time' or either 'with time'");
+            System.exit(1);
+        }
         if(temp.equals("no time"))
             with_time = false;
         /*====== LINE 4 ======*/
         temp = reader.nextLine();
+        if(!temp.equals("no open") && !temp.equals("with open"))
+        {
+            System.err.println("Error: input.txt, line 3 : must be 'no open' or either 'with open'");
+            System.exit(1);
+        }
         if(temp.equals("no open"))
             with_open = false;
         temp = reader.nextLine();
@@ -54,13 +64,22 @@ class InputReader
         start_and_goal_coordinates = reader.nextLine();// this line is for start and goal coordinates in the matrix
 
         /*====== LINE 7 to N+6 (included), so in total we get (N+6) - 7 + 1 = N =] ======*/
+        int size_check = 0;
         while (reader.hasNextLine())
         {
+            ++size_check;
             matrixReader.add(reader.nextLine()); //Here we are reading exactly #size lines
         }
 
         /*====== Done reading ======*/
         reader.close();
+        if(size_check !=size)
+        {
+            System.err.println("Error: input.txt : size variable is not matched to graph's size");
+            System.err.println("size variable = "+size);
+            System.err.println("graph's size = "+size_check+" X "+size_check);
+            System.exit(1);
+        }
         System.out.println();
 
         /*====== all is left is to convert the array list to matrix ======*/
