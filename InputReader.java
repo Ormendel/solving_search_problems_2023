@@ -38,7 +38,7 @@ class InputReader
 
         /*====== LINE 2 ======*/
         clock_direction_with_fn = reader.nextLine(); //second line is the clockwise direction with option of heuristic function
-        separator = clock_direction_with_fn.split(" "); //There is maximum 1 space, so the length of separator is maximum 2
+        separator = clock_direction_with_fn.split(" ");
         String temp = reader.nextLine(); //we will use this variable just for a simple check each time
         /*====== LINE 3 ======*/
         if(temp.equals("no time"))
