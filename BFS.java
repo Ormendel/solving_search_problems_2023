@@ -41,7 +41,8 @@ public class BFS extends Ex1 implements Algorithm
                 {
                     flag=true;
                     goal = g;
-                    System.out.println("Goal was found =]\n");
+                    if(var.with_open)
+                        System.out.println("Goal was found =]\n");
                     break;
                 }
                 if(open_list.containsKey(g.getSearchedKey()) || closed_list.containsKey(g.getSearchedKey()))
