@@ -64,8 +64,8 @@ public class Ex1
         int row_goal = var.row_goal;
         int column_goal = var.column_goal;
         //update distance to be according to the distance between start to target
-        //int distance = Math.abs(i - row_goal) + Math.abs(j - column_goal);
-        int distance = Math.max(Math.abs(i - row_goal), Math.abs(j - column_goal)); //Diagonal distance
+        int distance = Math.abs(i - row_goal) + Math.abs(j - column_goal);
+        //int distance = Math.max(Math.abs(i - row_goal), Math.abs(j - column_goal)); //Diagonal distance
         //int distance = (int)Math.sqrt(Math.pow(i-row_goal,2)+Math.pow(j-column_goal,2));
         return distance;
     }
@@ -89,6 +89,11 @@ public class Ex1
             System.out.println("An error occurred while trying opening the file =[");
             e.printStackTrace();
         }
+        /* checking for valid input */
+        SanityChecks edge_cases = new SanityChecks();
+        edge_cases.setVar(var);
+        edge_cases.tests();
+
         //introToUser(); //check if all went through ok
 
         int[] curr_cell = {var.row_start, var.column_start};
