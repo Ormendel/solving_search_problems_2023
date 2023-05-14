@@ -8,7 +8,7 @@ class OutputWriter extends Ex1
     public static void write_outputFile() throws IOException
     {
         File file = new File("output.txt");
-        FileWriter fw = new FileWriter(file,true);
+        FileWriter fw = new FileWriter(file,false);
         PrintWriter pw = new PrintWriter(fw);
 
         if(path.isEmpty())
