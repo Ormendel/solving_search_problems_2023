@@ -57,12 +57,10 @@ public class DFBnB extends Ex1 implements Algorithm
                 for (int i = 0; i < list.size(); i++)
                 {
                     Node g = list.get(i); //get node from index 'i'
-                    //if Manhattan cost higher than t
                     if (g.getF() >= t)
                     {
                         for(int j=list.size()-1; j>=i; --j)
                             list.remove(j); //deleting node in index 'j'
-                        break; // after removing - we exit the main for loop
                     }
                     else if (open_list.containsKey(g.getSearchedKey()) && out.contains(g)) //if open-list contains g node and that node is marked as out
                     {
@@ -89,8 +87,10 @@ public class DFBnB extends Ex1 implements Algorithm
                         iteration = 1; //reset iteration number to 1
                         if(var.with_open)
                             System.out.println("\n========== threshold = "+t+" ==========");
-                        for(int j = i; j<list.size();++j)
+                        for(int j = i; j<list.size();++j) {
                             list.remove(j);
+                            ++created_states; //we ignore all the nodes that were created after 'G' - but it still needs to be counted
+                        }
                         cost = g.getWeight(); // cost is set
                         result = g.getPath().substring(0,g.getPath().length()-1); // path is set
                         long end = System.currentTimeMillis() - startTime;
@@ -100,6 +100,7 @@ public class DFBnB extends Ex1 implements Algorithm
                 } // end for
                 //reverse list
                 Collections.reverse(list);
+                created_states+=list.size();
                 for (Node temp : list)
                 {
                     //insert to stack and hashtable all nodes that were left
