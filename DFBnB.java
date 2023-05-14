@@ -52,7 +52,6 @@ public class DFBnB extends Ex1 implements Algorithm
                 //for all of the nodes from priority queue
                 ArrayList<Node> list = new ArrayList<>(regularQueue.values());
                 list.sort(nc);
-
                 created_states += list.size();
                 for (int i = 0; i < list.size(); i++)
                 {
