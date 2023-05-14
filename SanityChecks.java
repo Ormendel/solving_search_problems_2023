@@ -53,7 +53,7 @@ class SanityChecks
                 System.exit(1);
             }
 
-            if(!var.separator[1].equals("old-first") && !var.separator[0].equals("new-first"))
+            if(!var.separator[1].equals("old-first") && !var.separator[1].equals("new-first"))
             {
                 System.err.println("Error: input.txt, line 2 : the traversal must be 'old-first' or either 'new-first'");
                 System.exit(1);
