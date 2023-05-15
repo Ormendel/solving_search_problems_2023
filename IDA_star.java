@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedHashMap;
 import java.util.Stack;
 import java.util.Hashtable;
@@ -15,11 +12,11 @@ public class IDA_star extends Ex1 implements Algorithm
         Stack<Node> stack = new Stack<>();
         Hashtable<String,Node> open_list = new Hashtable<>();
         Hashtable<String,Node> out = new Hashtable<>(); //we can also rename it as visited
-        int t = heuristic(start);
+        double t = heuristic(start);
         ++created_states;
         while (t != Integer.MAX_VALUE)
         {
-            int minF = Integer.MAX_VALUE;
+            double minF = Double.MAX_VALUE;
             stack.add(start);
             open_list.put(start.getSearchedKey(), start);
             out.clear(); //clear "out" list before each iteration
@@ -49,7 +46,7 @@ public class IDA_star extends Ex1 implements Algorithm
                     for (Node g: children.values())
                     {
                         ++created_states;
-                        int f = g.getF();
+                        double f = g.getF();
                         if (f > t)
                         {
                             minF = Math.min(minF,f);
@@ -60,7 +57,7 @@ public class IDA_star extends Ex1 implements Algorithm
                         if (open_list.containsKey(g.getSearchedKey())&& !out.contains(g))
                         {
                             Node g2 =  open_list.get(g.getSearchedKey());
-                            int f2 = g2.getF();
+                            double f2 = g2.getF();
                             if (f2 > f)
                             {
                                 stack.remove(g2);

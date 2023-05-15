@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 public class DFBnB extends Ex1 implements Algorithm
@@ -19,7 +16,7 @@ public class DFBnB extends Ex1 implements Algorithm
         open_list.put(start.getSearchedKey(), start);
         ++created_states;
         //init t to be max size
-        int t = Integer.MAX_VALUE; String result = null;
+        double t = Double.MAX_VALUE; String result = null;
         if(var.with_open)
             System.out.println("\n========== threshold = +Infinity ==========");
         //while stack isn't empty

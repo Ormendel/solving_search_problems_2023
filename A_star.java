@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 public class A_star extends Ex1 implements Algorithm
@@ -64,7 +61,7 @@ public class A_star extends Ex1 implements Algorithm
                 }
                 else if (pQueue.contains(g))
                 {
-                    int a, b;
+                    double a, b;
                     Node found = null;
                     //search in priority queue for the same node with different path
                     for (Node a1 : pQueue)
