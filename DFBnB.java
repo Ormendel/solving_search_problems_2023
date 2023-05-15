@@ -16,7 +16,7 @@ public class DFBnB extends Ex1 implements Algorithm
         open_list.put(start.getSearchedKey(), start);
         ++created_states;
         //init t to be max size
-        double t = Double.MAX_VALUE; String result = null;
+        int t = Integer.MAX_VALUE; String result = null;
         if(var.with_open)
             System.out.println("\n========== threshold = +Infinity ==========");
         //while stack isn't empty

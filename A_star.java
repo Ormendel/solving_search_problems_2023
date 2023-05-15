@@ -61,7 +61,7 @@ public class A_star extends Ex1 implements Algorithm
                 }
                 else if (pQueue.contains(g))
                 {
-                    double a, b;
+                    int a, b;
                     Node found = null;
                     //search in priority queue for the same node with different path
                     for (Node a1 : pQueue)

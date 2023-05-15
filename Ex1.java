@@ -49,7 +49,7 @@ public class Ex1
         System.out.println();
     }
     //Manhattan function as my heuristic function (useful for 8-tile puzzle)
-    public static double heuristic(Node n)
+    public static int heuristic(Node n)
     {
         //if the node is G - return 0
         if(n.getTag() == 'G')
@@ -60,8 +60,8 @@ public class Ex1
         int column_goal = var.column_goal;
         //update distance to be according to the distance between start to target
         //int distance = Math.abs(i - row_goal) + Math.abs(j - column_goal); // Manhattan - Option A
-        //int distance = Math.max(Math.abs(i - row_goal), Math.abs(j - column_goal)); //Diagonal distance - Option B
-        double distance = Math.sqrt(Math.pow(i-row_goal,2)+Math.pow(j-column_goal,2)); //Euclid - Option C
+        int distance = Math.max(Math.abs(i - row_goal), Math.abs(j - column_goal)); //Diagonal distance - Option B
+        //double distance = Math.sqrt(Math.pow(i-row_goal,2)+Math.pow(j-column_goal,2)); //Euclid - Option C
         return distance;
     }
     private static void introToUser()

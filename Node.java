@@ -10,7 +10,7 @@ public class Node extends Ex1
     private int[] curr_cell; //which cell we are currently at
 
     private int weight;// the cost value is calculated according to the cell we have stepped into
-    private double f; // f = g + h
+    private int f; // f = g + h
     private String path = ""; //building path for our answer
 
     private String direction = ""; //saving where did we go
@@ -18,7 +18,7 @@ public class Node extends Ex1
     private char tag = '?';
 
     /*====== Constructor ======*/
-    public Node(int id_num,String id, String searchedKey, Node parent, int[] parent_cell, int[] curr_cell,int weight, double f, String path, String direction, char tag)
+    public Node(int id_num,String id, String searchedKey, Node parent, int[] parent_cell, int[] curr_cell,int weight, int f, String path, String direction, char tag)
     {
         this.id_num=id_num;
         this.id = id;
@@ -91,11 +91,11 @@ public class Node extends Ex1
         this.weight = weight;
     }
 
-    public double getF() {
+    public int getF() {
         return f;
     }
 
-    public void setF(double f) {
+    public void setF(int f) {
         this.f = f;
     }
 

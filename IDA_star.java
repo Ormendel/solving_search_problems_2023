@@ -12,13 +12,13 @@ public class IDA_star extends Ex1 implements Algorithm
         Stack<Node> stack = new Stack<>();
         Hashtable<String,Node> open_list = new Hashtable<>();
         Hashtable<String,Node> out = new Hashtable<>(); //we can also rename it as visited
-        double t = heuristic(start);
-        ++created_states;
+        int t = heuristic(start);
         while (t != Integer.MAX_VALUE)
         {
-            double minF = Double.MAX_VALUE;
+            int minF = Integer.MAX_VALUE;
             stack.add(start);
             open_list.put(start.getSearchedKey(), start);
+            ++created_states;
             out.clear(); //clear "out" list before each iteration
             System.out.println("\n========== threshold =  "+t+ " ==========");
             while (!stack.isEmpty())
@@ -46,7 +46,7 @@ public class IDA_star extends Ex1 implements Algorithm
                     for (Node g: children.values())
                     {
                         ++created_states;
-                        double f = g.getF();
+                        int f = g.getF();
                         if (f > t)
                         {
                             minF = Math.min(minF,f);
