@@ -20,7 +20,8 @@ public class IDA_star extends Ex1 implements Algorithm
             open_list.put(start.getSearchedKey(), start);
             ++created_states;
             out.clear(); //clear "out" list before each iteration
-            System.out.println("\n========== threshold =  "+t+ " ==========");
+            if(var.with_open)
+                System.out.println("\n========== threshold =  "+t+ " ==========");
             while (!stack.isEmpty())
             {
                 if(var.with_open)
